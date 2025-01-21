@@ -1,0 +1,143 @@
+dialog {
+  border: none;
+  padding: 0;
+}
+
+.product-item-body-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 20px;
+}
+
+.product-item-body-container .product-item-container {
+  display: flex;
+  flex-direction: row;
+  width: 75vw;
+  height: 75vh;
+}
+
+.product-item-body-container .product-item-container .product-item-picture-container {
+  width: 50%;
+  height: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 3px solid rgb(90, 90, 90);
+}
+
+.product-item-body-container .product-item-container .product-item-picture-container span {
+  width: 100%;
+  height: 100%;
+}
+
+.product-item-body-container .product-item-container .product-item-context-container {
+  flex: 1;
+}
+
+.product-item-body-container .product-item-container .product-item-context-container .product-item-context-title {
+  font-size: 25px;
+  font-weight: 800;
+  color: rgb(68, 68, 68);
+  margin: 15px;
+
+  display: block;
+}
+
+.product-item-body-container .product-item-container .product-item-context-container .product-item-context-categories {
+  font-size: 15px;
+  font-weight: 300;
+  color: rgb(68, 68, 68);
+  margin: 15px 15px 0px 15px;
+  padding: 10px 10px;
+
+  display: block;
+  border-top: 1px dashed rgb(68, 68, 68);
+}
+
+.product-item-body-container .product-item-container .product-item-context-container .product-item-context-tags {
+  font-size: 15px;
+  font-weight: 300;
+  color: rgb(68, 68, 68);
+  margin: 0px 15px;
+  padding: 10px 10px;
+
+  display: block;
+  border-top: 1px dashed rgb(68, 68, 68);
+}
+
+.product-item-body-container .product-item-container .product-item-context-container .product-item-context-prices {
+  font-size: 25px;
+  font-weight: 600;
+  color: black;
+  margin: 0px 15px;
+  padding: 10px 10px;
+
+  display: block;
+  border-top: 1px dashed rgb(68, 68, 68);
+}
+
+.product-item-body-container .product-item-container .product-item-context-container .product-item-context-instructions {
+  font-size: 18px;
+  font-weight: 300;
+  color: rgb(68, 68, 68);
+  margin: 0px 15px;
+  padding: 10px 10px;
+
+}
+
+.product-item-body-container .product-item-container .product-item-context-container .product-item-context-quantity-container {
+  font-size: 18px;
+  font-weight: 500;
+  color: rgb(68, 68, 68);
+  margin: 0px 15px;
+  padding: 10px 10px;
+  display: inline-block;
+}
+
+.product-item-body-container .product-item-container .product-item-context-container .product-item-context-quantity-container .product-item-context-quantity-subtract-button, .product-item-context-quantity-add-button {
+  font-size: 15px;
+  font-weight: 500;
+  padding: 10px 8px;
+
+  border: 1px solid rgb(139, 139, 139);
+  background-color: white;
+  color: rgb(68, 68, 68);
+  cursor: pointer;
+  height: 40px;
+}
+
+.product-item-body-container .product-item-container .product-item-context-container .product-item-context-quantity-container .product-item-context-quantity-display {
+  font-size: 15px;
+  font-weight: 500;
+  padding: 10px 10px;
+
+  border-top: 1px solid rgb(139, 139, 139);
+  border-bottom: 1px solid rgb(139, 139, 139);
+  background-color: white;
+  color: rgb(68, 68, 68);
+  width: 15px;
+  height: 18px;
+  display: inline-block;
+  text-align: center;
+}
+
+.dialog-div {
+  max-height: 90vh; 
+  max-width: 90vw; 
+  overflow: hidden;
+  border: 1px solid red;
+}
+
+.dialog-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+
+  border: none;
+  border-radius: 40%;
+  background-color: transparent;
+  font-size: 18px;
+}

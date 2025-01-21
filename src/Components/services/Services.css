@@ -1,0 +1,56 @@
+.services-body-container {
+  height: 100vh;
+  width: 100vw;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.services-body-container .services-context-container{
+  padding: 20px;
+  border: 3px solid grey;
+  border-radius: 15px;
+
+  box-sizing: 1px 1px 1px 5px black;
+  background-color: white;
+  width: 80%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.services-body-container .services-context-container .tite-container{
+  font-size: 30px;
+  font-weight: 700;
+  color: rgb(85, 85, 85);
+  padding: 25px;
+  margin-bottom: 20px;
+}
+
+.services-body-container .services-context-container .context-container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+}
+
+.services-context-container .context-container .context-paragraph{
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.context-container .context-paragraph .context-paragraph-title{
+  font-size: 25px;
+  display: block;
+  font-weight: 600;
+}
+
+.context-container .context-paragraph .context-paragraph-context{
+  font-size: 18px;
+  display: block;
+
+  padding: 10px;
+}
+

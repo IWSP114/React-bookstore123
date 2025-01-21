@@ -1,0 +1,40 @@
+.about-body-container {
+  height: 100vh;
+  width: 100vw;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: rgb(208,38,38);
+background: radial-gradient(circle, 
+  rgba(208,38,38,1) 0%, 
+  rgba(207,141,35,1) 10%, 
+  rgba(183,203,42,1) 20%, 
+  rgba(64,203,42,1) 30%, 
+  rgba(40,195,173,1) 40%, 
+  rgba(50,181,199,1) 50%, 
+  rgba(47,75,198,1) 60%, 
+  rgba(53,43,203,1) 70%, 
+  rgba(154,43,196,1) 80%, 
+  rgba(196,44,183,1) 90%, 
+  rgba(204,43,119,1) 100%);
+}
+
+.about-body-container .about-context-container {
+  height: 50%;
+  width: 50%;
+
+  background-color: rgb(182, 204, 82);
+  border: 4px solid white;
+  border-radius: 12px;
+
+  padding: 20px;
+}
+
+.about-body-container .about-context-container .about-context {
+  font-size: 18px;
+  font-weight: 400;
+
+  display: block;
+}

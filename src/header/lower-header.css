@@ -1,0 +1,43 @@
+.lower-nav-bar {
+  background-color: hsl(209, 65%, 72%);
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lower-nav-bar ul {
+  list-style-type: none; 
+  margin: 0;
+  padding: 0;
+}
+.lower-nav-bar ul li {
+  float: left; 
+}
+.lower-nav-bar ul li a {
+  display: block;
+  color: hsl(0, 0%, 50%); 
+  text-align: center;
+  padding: 18px 30px; 
+  text-decoration: none;
+  font-weight: 650;
+  font-size: 24px;
+}
+.lower-nav-bar ul li a:hover {
+  background-color: hsl(209, 65%, 62%);
+  color: hsl(0, 0%, 93%);
+}
+
+.icon-image {
+  width: 24px;
+  height: 24px;
+  mix-blend-mode: multiply;
+  margin-right: 8px;
+}
+
+.item-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+

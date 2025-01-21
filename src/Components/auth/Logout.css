@@ -1,0 +1,26 @@
+.background-container {
+  background-color: hsla(0, 0%, 0%, 0.70);
+
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.text-container {
+  background-color: hsl(155, 21%, 84%);
+  padding: 25px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  width: 500px;
+  margin: 100px auto; 
+}
+h2 {
+  text-align: center;
+}

@@ -1,0 +1,6 @@
+.body-slideshow-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(to right, hsl(204, 65%, 74%), hsl(162, 60%, 63%));
+}

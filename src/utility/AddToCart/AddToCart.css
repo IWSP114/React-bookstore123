@@ -1,0 +1,40 @@
+@keyframes opacityChange {
+  from {opacity: 0.5;}
+  to {opacity: 1;}
+}
+
+.add-to-cart-button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.add-to-cart-button {
+  border: 3px solid hsla(150, 34%, 35%, 0.808);
+  background-color: white;
+  color: hsla(150, 34%, 35%, 0.808);
+  padding: 8px 25px;
+  cursor: pointer;
+
+  transition: padding 0.5s ease, border-radius 0.5s ease;
+}
+
+.add-to-cart-button-active {
+  border: 3px solid hsla(150, 34%, 35%, 0.808);
+  border-radius: 45%;
+  background-color: white;
+  color: hsla(150, 34%, 35%, 0.808);
+  padding: 3px 5px;
+  cursor: pointer;
+
+  transition: padding 0.5s ease, border-radius 0.5s ease;
+}
+
+.add-to-cart-message {
+  margin-top: 10px;
+  font-weight: 700;
+  font-size: 15px;
+  color: rgba(255, 0, 0, 0.692);
+}

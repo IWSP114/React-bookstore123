@@ -1,0 +1,78 @@
+@keyframes opening {
+  from 
+  {
+    border-radius: 95px;
+    padding: 15px;
+  }
+  to 
+  {
+    border-radius: 5px;
+    padding: 25px;
+  }
+}
+
+.register-container {
+  background-color: hsl(155, 21%, 84%);
+  padding: 25px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  width: 500px;
+  animation-name: opening;
+  animation-duration: 2s;
+  margin: 100px auto; 
+}
+h2 {
+  text-align: center;
+}
+.form-group {
+  margin-bottom: 20px;
+}
+.submit-group {
+  display: flex;
+  justify-content: center;
+}
+label {
+  display: block;
+  margin-bottom: 8px;
+}
+input[type="text"],
+input[type="password"] {
+  width: 85%;
+  padding: 10px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+}
+input[type="submit"] {
+  width: 60%;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+
+}
+input[type="submit"]:hover {
+  background-color: #218838;
+}
+.password-input {
+  position: relative;
+}
+
+.password-showing-button {
+  position: absolute;
+  top: 6px;
+  right: 60px;
+
+  border: none;
+  border-radius: 15px;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.password-showing-icon {
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
