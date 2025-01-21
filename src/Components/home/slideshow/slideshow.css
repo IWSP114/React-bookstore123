@@ -45,13 +45,13 @@
 
 .go-to-prev-slide-button {
   position: absolute;
-  left: -50px;
+  left: -1vw;
   transform: rotate(180deg);
 }
 
 .go-to-next-slide-button {
   position: absolute;
-  right: -50px;
+  right: 1vw;
 }
 
 .slideshow-page-container {

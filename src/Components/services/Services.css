@@ -5,10 +5,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: auto;
 }
 
 .services-body-container .services-context-container{
-  padding: 20px;
+  padding: 1.25rem;
   border: 3px solid grey;
   border-radius: 15px;
 
@@ -22,7 +23,7 @@
 }
 
 .services-body-container .services-context-container .tite-container{
-  font-size: 30px;
+  font-size: 1.9rem;
   font-weight: 700;
   color: rgb(85, 85, 85);
   padding: 25px;
@@ -37,18 +38,18 @@
 }
 
 .services-context-container .context-container .context-paragraph{
-  font-size: 18px;
-  margin-bottom: 30px;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
 }
 
 .context-container .context-paragraph .context-paragraph-title{
-  font-size: 25px;
+  font-size: 1.6rem;
   display: block;
   font-weight: 600;
 }
 
 .context-container .context-paragraph .context-paragraph-context{
-  font-size: 18px;
+  font-size: 1.1rem;
   display: block;
 
   padding: 10px;

@@ -12,6 +12,7 @@ function PopularItem() {
       <div className="popular-items-title-container">
         <span className="popular-items-title">&#128293; Popular Items &#128293;</span>
       </div>
+      
       <div className="popular-items-box-container">
         {
           products.slice(0, 5).map((product)=>

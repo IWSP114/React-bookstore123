@@ -1,9 +1,13 @@
 .lower-nav-bar {
   background-color: hsl(209, 65%, 72%);
   overflow: hidden;
+  /*
   display: flex;
   justify-content: space-between;
   align-items: center;
+  */
+
+  display: block;
 }
 
 .lower-nav-bar ul {
