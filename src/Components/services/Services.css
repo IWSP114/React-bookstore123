@@ -5,7 +5,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: auto;
 }
 
 .services-body-container .services-context-container{
@@ -16,10 +15,13 @@
   box-sizing: 1px 1px 1px 5px black;
   background-color: white;
   width: 80%;
+  height: 80%;
 
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  overflow: auto;
 }
 
 .services-body-container .services-context-container .tite-container{
@@ -53,5 +55,6 @@
   display: block;
 
   padding: 10px;
+  overflow: hidden;
 }
 

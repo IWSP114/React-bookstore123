@@ -16,9 +16,9 @@ CartObject.propTypes = {
       localStorage.setItem('cart', JSON.stringify(cart));
     }, [cart]);
 
-    useEffect(()=>{
-      console.log("Cart Updated");
-    }, [cart])
+    // useEffect(()=>{
+    //   console.log("Cart Updated");
+    // }, [cart])
 
     return (
       <CartContext.Provider value={{ cart, setCart }}>

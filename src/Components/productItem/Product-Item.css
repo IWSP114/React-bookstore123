@@ -16,6 +16,8 @@ dialog {
   flex-direction: row;
   width: 75vw;
   height: 75vh;
+
+  overflow: auto;
 }
 
 .product-item-body-container .product-item-container .product-item-picture-container {
@@ -140,4 +142,11 @@ dialog {
   border-radius: 40%;
   background-color: transparent;
   font-size: 18px;
+}
+
+@media(max-width: 992px) { /* width less than 992px, display: none */
+
+  .product-item-body-container .product-item-container .product-item-context-container .product-item-context-instructions {
+    display: none;
+  }
 }

@@ -42,7 +42,7 @@ const Slideshow = ({ slides }) => {
 };
 
 Slideshow.propTypes = {
-  slides: PropTypes.arrayOf(PropTypes.object).isRequired,
+  slides: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default Slideshow;

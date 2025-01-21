@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import { useState} from 'react'
 import { ProductContext } from './CartLoader'
 import PropTypes from 'prop-types';
 
@@ -58,9 +58,9 @@ export function ProductObject({ children }) {
           price: 15.89}
     ]);
 
-    useEffect(()=>{
-      console.log("Origal Products Changed")
-    }, [products])
+    // useEffect(()=>{
+    //   console.log("Origal Products Changed")
+    // }, [products])
 
     return (
           <ProductContext.Provider value={{ products, setProducts }}>

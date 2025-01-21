@@ -8,9 +8,6 @@ function RandomBook() {
   const navigate = useNavigate();
   const randomNumber = Math.floor(Math.random() * products.length);
 
-  console.log(products[1].productID);
-  console.log(randomNumber);
-
   useEffect(()=> {
     navigate(`/product/${products[randomNumber].productID}`);
   })
