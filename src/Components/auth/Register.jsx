@@ -28,6 +28,10 @@ function Register() {
                     handleSubmit(event);
                 }
             });
+
+            return () => {
+                document.removeEventListener('keydown', handleSubmit)
+            }
         })
 
     const handleSubmit = (event) => {

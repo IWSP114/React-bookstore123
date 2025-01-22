@@ -1,13 +1,13 @@
 @keyframes opening {
   from 
   {
-    border-radius: 75px;
-    padding: 5px;
+    border-radius: 6rem;
+    padding: 1rem;
   }
   to 
   {
-    border-radius: 5px;
-    padding: 25px;
+    border-radius: 0.3125rem;
+    padding: 1.6rem;
   }
 }
 

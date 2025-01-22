@@ -8,7 +8,7 @@ dialog {
   justify-content: center;
   align-items: center;
 
-  margin-top: 20px;
+  margin-top: 1.25rem;
 }
 
 .product-item-body-container .product-item-container {
@@ -40,69 +40,69 @@ dialog {
 }
 
 .product-item-body-container .product-item-container .product-item-context-container .product-item-context-title {
-  font-size: 25px;
+  font-size: 1.5625rem;
   font-weight: 800;
   color: rgb(68, 68, 68);
-  margin: 15px;
+  margin: 1rem;
 
   display: block;
 }
 
 .product-item-body-container .product-item-container .product-item-context-container .product-item-context-categories {
-  font-size: 15px;
+  font-size: 1rem;
   font-weight: 300;
   color: rgb(68, 68, 68);
-  margin: 15px 15px 0px 15px;
-  padding: 10px 10px;
+  margin: 1rem 1rem 0 1rem;
+  padding: 0.625rem 0.625rem;
 
   display: block;
   border-top: 1px dashed rgb(68, 68, 68);
 }
 
 .product-item-body-container .product-item-container .product-item-context-container .product-item-context-tags {
-  font-size: 15px;
+  font-size: 1rem;
   font-weight: 300;
   color: rgb(68, 68, 68);
-  margin: 0px 15px;
-  padding: 10px 10px;
+  margin: 0 1rem;
+  padding: 0.625rem;
 
   display: block;
   border-top: 1px dashed rgb(68, 68, 68);
 }
 
 .product-item-body-container .product-item-container .product-item-context-container .product-item-context-prices {
-  font-size: 25px;
+  font-size: 1.5625rem;
   font-weight: 600;
   color: black;
-  margin: 0px 15px;
-  padding: 10px 10px;
+  margin: 0 1rem;
+  padding: 0.625rem;
 
   display: block;
   border-top: 1px dashed rgb(68, 68, 68);
 }
 
 .product-item-body-container .product-item-container .product-item-context-container .product-item-context-instructions {
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 300;
   color: rgb(68, 68, 68);
-  margin: 0px 15px;
-  padding: 10px 10px;
+  margin: 0 1rem;
+  padding: 0.625rem;
 
 }
 
 .product-item-body-container .product-item-container .product-item-context-container .product-item-context-quantity-container {
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 500;
   color: rgb(68, 68, 68);
-  margin: 0px 15px;
-  padding: 10px 10px;
+  margin: 0 1rem;
+  padding: 0.625rem;
   display: inline-block;
 }
 
 .product-item-body-container .product-item-container .product-item-context-container .product-item-context-quantity-container .product-item-context-quantity-subtract-button, .product-item-context-quantity-add-button {
-  font-size: 15px;
+  font-size: 1rem;
   font-weight: 500;
-  padding: 10px 8px;
+  padding: 0.625rem 0.5rem;
 
   border: 1px solid rgb(139, 139, 139);
   background-color: white;
@@ -112,16 +112,16 @@ dialog {
 }
 
 .product-item-body-container .product-item-container .product-item-context-container .product-item-context-quantity-container .product-item-context-quantity-display {
-  font-size: 15px;
+  font-size: 1rem;
   font-weight: 500;
-  padding: 10px 10px;
+  padding: 0.625rem;
 
   border-top: 1px solid rgb(139, 139, 139);
   border-bottom: 1px solid rgb(139, 139, 139);
   background-color: white;
   color: rgb(68, 68, 68);
-  width: 15px;
-  height: 18px;
+  width: 1rem;
+  height: 1.125rem;
   display: inline-block;
   text-align: center;
 }

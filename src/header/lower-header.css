@@ -22,10 +22,10 @@
   display: block;
   color: hsl(0, 0%, 50%); 
   text-align: center;
-  padding: 18px 30px; 
+  padding: 1.125rem 1.875rem; 
   text-decoration: none;
   font-weight: 650;
-  font-size: 24px;
+  font-size: 1.5rem;
 }
 .lower-nav-bar ul li a:hover {
   background-color: hsl(209, 65%, 62%);
@@ -33,10 +33,10 @@
 }
 
 .icon-image {
-  width: 24px;
-  height: 24px;
+  width: 1.5rem;
+  height: 1.5rem;
   mix-blend-mode: multiply;
-  margin-right: 8px;
+  margin-right: 0.5rem;
 }
 
 .item-container {

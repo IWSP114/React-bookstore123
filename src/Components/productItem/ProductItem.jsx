@@ -48,7 +48,11 @@ function ProductItem() {
             {activeImage && (
               <>
                 <div className="dialog-div">
-                  <img src={`/books-image/${getSelectedItem.productID}.jpg`}></img>
+                  <ImageLoader
+                    ProductID={getSelectedItem.productID}
+                    Width={100}
+                    Height={100}
+                  />
                   <button className="dialog-button" onClick={closeModal}>
                     X
                   </button>

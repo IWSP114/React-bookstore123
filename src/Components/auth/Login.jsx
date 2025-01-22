@@ -21,7 +21,10 @@ function Login() {
                 handleSubmit(event);
             }
         });
-    })
+
+        return () => document.removeEventListener('keydown', handleSubmit);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [password, username])
   
     const handleSubmit = (event) => {
         event.preventDefault();

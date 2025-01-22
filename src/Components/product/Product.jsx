@@ -27,25 +27,25 @@ function Product() {
                 <div className="product-display-container">
                     {
                         products.map((productItem)=>
-                            <Link to={`/product/${productItem.productID}`} key={productItem.productID}>
-                                <div className="product-item-container-box">
-                                    <div className="product-item-container">
-                                        <div className="product-item-picture-container">
-                                            <ImageLoader
-                                                ProductID={productItem.productID}
-                                                Width={100}
-                                                Height={100}
-                                            />
-                                        </div>
+                                <div className="product-item-container-box" key={productItem.productID}>
+                                    <Link to={`/product/${productItem.productID}`}>
+                                        <div className="product-item-container">
+                                            <div className="product-item-picture-container">
+                                                <ImageLoader
+                                                    ProductID={productItem.productID}
+                                                    Width={100}
+                                                    Height={100}
+                                                />
+                                            </div>
 
-                                        <div className="product-item-context-container">
-                                            <span className="product-item-context-type">Story Book</span>
-                                            <span className="product-item-context-title">{productItem.name}</span>
-                                            <span className="product-item-context-price">USD ${productItem.price}</span>
+                                            <div className="product-item-context-container">
+                                                <span className="product-item-context-type">Story Book</span>
+                                                <span className="product-item-context-title">{productItem.name}</span>
+                                                <span className="product-item-context-price">USD ${productItem.price}</span>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </Link>
                                 </div>
-                            </Link>
                         )
                     }
                 </div>
