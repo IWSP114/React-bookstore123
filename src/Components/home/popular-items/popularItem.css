@@ -33,11 +33,6 @@
   width: 95vw;
 }
 
-.popular-items-background .popular-items-box-container a {
-  text-decoration: none;
-  color: black;
-  width: 70%;
-}
 
 .popular-items-box-container .popular-item-container {
   background-color: aliceblue;
@@ -47,9 +42,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 
-  height: 400px;
-  width: 100%;
+  height: 90%;
+  width: 50%;
+}
+
+.popular-items-background .popular-items-box-container .popular-item-container a {
+  text-decoration: none;
+  color: black;
 }
 
 .popular-items-box-container .popular-item-container:hover {
@@ -59,7 +60,7 @@
 
 .popular-item-container .popular-item-image-container {
   width: 100%;
-  height: 100%;
+  height: 50%;
 
   display: flex;
   flex-direction: column;

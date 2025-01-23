@@ -40,8 +40,7 @@
 .cart-item-container .item-image-container{
   display: inline-block;
   border: 1px solid black;
-  width: 20%;
-  min-width: 10%;
+  min-width: 20%;
   height: 11.25rem;
 }
 

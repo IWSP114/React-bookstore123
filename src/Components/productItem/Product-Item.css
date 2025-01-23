@@ -108,7 +108,7 @@ dialog {
   background-color: white;
   color: rgb(68, 68, 68);
   cursor: pointer;
-  height: 40px;
+  height: 2.5rem;
 }
 
 .product-item-body-container .product-item-container .product-item-context-container .product-item-context-quantity-container .product-item-context-quantity-display {

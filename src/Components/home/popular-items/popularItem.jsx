@@ -16,24 +16,27 @@ function PopularItem() {
       <div className="popular-items-box-container">
         {
           products.slice(0, 5).map((product)=>
-            <Link to={`/product/${product.productID}`} key={product.productID}>
-              <div className="popular-item-container">
-                <div className="popular-item-image-container">
-                  <ImageLoader
-                    ProductID={product.productID}
-                    Width={100}
-                    Height={100}
-                  />
-                </div>
-                <div className="popular-item-name-container">
-                  <span>{product.name}</span>
-                </div>
-                <div className="popular-item-price-container">
-                  <span>USD ${product.price}</span>
-                </div>
-                
+            
+              <div className="popular-item-container" key={product.productID}>
+                <Link to={`/product/${product.productID}`} >
+                  <div className="popular-item-image-container">
+                    <ImageLoader
+                      ProductID={product.productID}
+                      Width={100}
+                      Height={100}
+                    />
+                  </div>
+
+                  <div className="popular-item-name-container">
+                    <span>{product.name}</span>
+                  </div>
+
+                  <div className="popular-item-price-container">
+                    <span>USD ${product.price}</span>
+                  </div>
+                </Link>
               </div>
-            </Link>
+           
           )
         }
 
