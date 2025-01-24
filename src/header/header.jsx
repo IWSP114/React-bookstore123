@@ -10,12 +10,14 @@ import homeLogo from '../assets/home-icon.png';
 import newLogo from '../assets/new-icon.png';
 import randomLogo from '../assets/random-icon.png';
 import cartLogo from '../assets/shopping-cart-icon.png'
+import listLogo from '../assets/order-list-icon.png'
 
 function Header() {
     const [cookies] = useCookies(['user']);
     const [username, setUsername] = useState("Guest");
 
     useEffect(() => {
+        //console.log(import.meta.env.VITE_API_URL)
         const usernameCookie = cookies.user ? decryptData(cookies.user).username : 'Guest';
         if (username !== usernameCookie) {
             setUsername(usernameCookie);
@@ -54,12 +56,19 @@ function Header() {
                 <>
                     <div className="option-space">&nbsp;</div>
                     <div className="login-option-container">
-                    <Link to="/cart" className="nav-link">
-                    <div className="cart-icon-container">
-                        <img src={cartLogo} className="icon-image" />
-                        <span className="cart-item-quantity">{cart.length}</span>
+                        <Link to="/orders" className="nav-link">
+                            <img src={listLogo} className="icon-image" />
+                        </Link>
                     </div>
-                    </Link>
+
+                    <div className="option-space">&nbsp;</div>
+                    <div className="login-option-container">
+                        <Link to="/cart" className="nav-link">
+                            <div className="cart-icon-container">
+                                <img src={cartLogo} className="icon-image" />
+                                <span className="cart-item-quantity">{cart.length}</span>
+                            </div>
+                        </Link>
                     </div>
 
                     <div className="option-space">&nbsp;</div>

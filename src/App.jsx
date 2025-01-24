@@ -11,6 +11,7 @@ import Cart from './Components/cart/Cart.jsx';
 import Product from './Components/product/Product.jsx';
 const ProductItemPage = lazy(()=> import ('./Components/productItem/ProductItemPage'));
 import RandomBook from './Components/random-book/Random-book.jsx';
+const OrderPage = lazy(()=> import ('./Components/order/OrderPage.jsx'));
 import { CartObject } from './utility/CartObject.jsx';
 import { ProductObject } from './utility/ProductsObject.jsx';
 import Header from './header/header.jsx';
@@ -36,6 +37,7 @@ function App() {
                         <Route path="/cart" element={<Cart />} />
                         <Route path="/product" element={<Product />} />
                         <Route path="/product/:ProductID" element={<Suspense fallback={<div>Loading...</div>}><ProductItemPage /></Suspense>} />
+                        <Route path="/orders" element={<OrderPage />} />
                         <Route path="*" element={<Home />} />
                     </Routes>
                     <ScrollToTop smooth />
