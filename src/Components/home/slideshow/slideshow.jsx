@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import './slideshow.css';
 
@@ -16,8 +16,18 @@ const Slideshow = ({ slides }) => {
 
   const goToSelectSlide = (index) => {
       setCurrentIndex(index);
-      console.log('trigger');
   };
+
+  useEffect(() => {
+    const slideAuto = setTimeout(() => {
+      goToNextSlide()
+    }, 10000);
+
+    return () => {
+      clearTimeout(slideAuto);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
       <div className="slideshow-container">

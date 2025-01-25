@@ -14,7 +14,7 @@ const ImageLoader = ({ProductID, Width, Height}) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return imageSrc ? <img src={imageSrc} alt="Dynamic Import" style={{
+  return imageSrc ? <img src={imageSrc} alt="Loading" style={{
     height: Height+'%',
     width: Width+'%',
     objectFit: 'contain'

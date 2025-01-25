@@ -12,6 +12,8 @@ import Product from './Components/product/Product.jsx';
 const ProductItemPage = lazy(()=> import ('./Components/productItem/ProductItemPage'));
 import RandomBook from './Components/random-book/Random-book.jsx';
 const OrderPage = lazy(()=> import ('./Components/order/OrderPage.jsx'));
+const OrderItemPage = lazy(() => import ('./Components/orderItem/OrderItemPage.jsx'));
+const LostPssword = lazy(() => import ('./Components/auth/LostPassword.jsx'));
 import { CartObject } from './utility/CartObject.jsx';
 import { ProductObject } from './utility/ProductsObject.jsx';
 import Header from './header/header.jsx';
@@ -34,10 +36,12 @@ function App() {
                         <Route path="/register" element={<Suspense fallback={<div>Loading...</div>}><Register /></Suspense>} />
                         <Route path="/login" element={<Suspense fallback={<div>Loading...</div>}><Login /></Suspense>} />
                         <Route path="/logout" element={<Logout />} />
+                        <Route path="/lost-password" element={<Suspense fallback={<div>Loading...</div>}><LostPssword /></Suspense>} />
                         <Route path="/cart" element={<Cart />} />
                         <Route path="/product" element={<Product />} />
                         <Route path="/product/:ProductID" element={<Suspense fallback={<div>Loading...</div>}><ProductItemPage /></Suspense>} />
-                        <Route path="/orders" element={<OrderPage />} />
+                        <Route path="/orders" element={<Suspense fallback={<div>Loading...</div>}><OrderPage /></Suspense>} />
+                        <Route path="/orders/:OrderID" element={<Suspense fallback={<div>Loading...</div>}><OrderItemPage /></Suspense>} />
                         <Route path="*" element={<Home />} />
                     </Routes>
                     <ScrollToTop smooth />

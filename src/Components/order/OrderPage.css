@@ -17,11 +17,12 @@
   flex-direction: row;
 }
 
+/* Account opinions */
 .order-page-context .account-opinions {
   display: flex;
   flex-direction: column;
   width: 25%;
-  padding-left: 10rem;
+  padding-left: 9rem;
   margin-bottom: 1.5rem;
 
   border-right: 2px solid rgba(24, 24, 24, 0.863);
@@ -47,6 +48,8 @@
   display: flex;
   flex-direction: column;
   margin-right: 5px;
+
+  height: 40vh;
 }
 
 .account-opinions .account-opinions-opinion-container .account-opinions-opinion {
@@ -67,5 +70,69 @@
   transition: border 0.1s ease;
 }
 
+/* Order List */
+.order-page-context .order-lists {
+  flex: 1;
+  margin-left: 1rem;
+}
 
+.order-lists .order-lists-title-container {
+  padding-top: 1.8rem;
+  padding-left: 1.2rem;
+  padding-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  border-bottom: 3px solid rgba(121, 121, 121, 0.452);
 
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: rgb(87, 87, 87);
+}
+
+.order-lists .order-lists-title-container .order-lists-title-order, 
+.order-item-container .order-lists-item-order 
+{
+  width: 20%;
+}
+
+.order-item-container .order-lists-item-order a {
+  color: rgb(87, 87, 87);
+  font-weight: 600;
+}
+
+.order-lists .order-lists-title-container .order-lists-title-date, 
+.order-lists .order-lists-title-container .order-lists-title-status, 
+.order-item-container .order-lists-item-date,
+.order-item-container .order-lists-item-status
+{
+  width: 15%;
+}
+
+.order-lists .order-lists-title-container .order-lists-title-total,
+.order-item-container .order-lists-item-total
+{
+  width: 30%;
+}
+
+.order-lists .order-lists-title-container .order-lists-title-actions,
+.order-item-container .order-lists-item-actions
+ {
+  width: 20%;
+}
+
+.order-lists .order-lists-context-container {
+  display: flex;
+  flex-direction: column;
+
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgb(87, 87, 87);
+}
+
+.order-lists .order-lists-context-container .order-item-container {
+  padding: 1.2rem 0;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 3px solid rgba(121, 121, 121, 0.452);
+}
