@@ -1,0 +1,51 @@
+.account-opinions {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  padding-left: 9rem;
+  margin-bottom: 1.5rem;
+
+  border-right: 2px solid rgba(24, 24, 24, 0.863);
+}
+
+.account-opinions .account-opinions-username-container {
+  font-size: 1.3rem;
+  font-weight: 500;
+
+  color: rgba(63, 63, 63, 0.836);
+
+  height: 3rem;
+  padding: 1.5rem 1rem;
+
+  display: flex;
+  align-items: center;
+}
+
+.account-opinions .account-opinions-opinion-container {
+  font-size: 0.9rem;
+  font-weight: 500;
+
+  display: flex;
+  flex-direction: column;
+  margin-right: 5px;
+
+  height: 40vh;
+}
+
+.account-opinions .account-opinions-opinion-container .account-opinions-opinion {
+  border-bottom: 1px solid black;
+  padding: 0.9rem 0;
+  color: black;
+  transition: border-right 1s ease;
+}
+
+.account-opinions .account-opinions-opinion-container a {
+  text-decoration: none;
+
+}
+
+.account-opinions .account-opinions-opinion-container .account-opinions-opinion:hover {
+  border-right: 4px solid green;
+  color: black;
+  transition: border 0.1s ease;
+}

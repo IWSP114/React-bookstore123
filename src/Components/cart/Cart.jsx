@@ -7,6 +7,7 @@ import rubbishIcon from "../../assets/rubbish-bin-icon.png"
 import { decryptData } from '../../utility/crypto.js'
 import { useCookies } from 'react-cookie';
 import ImageLoader from "../../utility/ImageLoader/ImageLoader.jsx";
+import ToTwoDecimal from "../../utility/ToTwoDecimal.js";
 
 
 function Cart() {
@@ -91,8 +92,8 @@ function Cart() {
                   {
                   cart.map((cartItem)=> 
                     <div key={cartItem.id} className="item-context">
-                      <span>{cartItem.name} (${(Math.round(cartItem.price * 100) / 100).toFixed(2)} x {cartItem.quantity})</span>
-                      <span>${(Math.round((cartItem.price * cartItem.quantity) * 100) / 100).toFixed(2)}</span>
+                      <span>{cartItem.name} (${ToTwoDecimal(cartItem.price)} x {cartItem.quantity})</span>
+                      <span>${ToTwoDecimal(cartItem.price * cartItem.quantity)}</span>
                     </div>
                   )} 
                     <div className="payment-total">

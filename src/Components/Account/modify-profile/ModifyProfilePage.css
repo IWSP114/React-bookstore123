@@ -1,0 +1,72 @@
+.account-edit-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.account-edit-container .account-edit-page-title {
+  background-color: rgba(231, 231, 231, 0.781);
+  color: rgba(49, 49, 49, 0.747);
+
+  font-size: 2rem;
+  font-weight: 600;
+  padding: 0.8rem;
+}
+
+.account-edit-container .account-edit-context {
+  display: flex;
+  flex-direction: row;
+}
+
+/* Order List */
+.account-edit-context .account-edit-form {
+  flex: 1;
+  margin-left: 1rem;
+  margin-top: 1rem;
+}
+
+.account-edit-form .username-title,
+.account-edit-form .display-name-title,
+.account-edit-form .email-title {
+  display: block;
+
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 1px;
+
+  margin: 0.8rem 0;
+}
+
+.account-edit-form .username,
+.account-edit-form .display-name,
+.account-edit-form .email {
+  display: block;
+
+  font-weight: 400;
+  font-size: 1rem;
+  letter-spacing: 1px;
+
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  width: 80%;
+}
+
+
+.account-edit-form .save-changes-button {
+  background-color: rgb(55, 170, 126);
+  padding: 0.7rem 0.9rem;
+  margin: 0.7rem 0.9rem;
+
+  border: none;
+  border-radius: 3px;
+
+  font-weight: 700;
+  font-size: 1rem;
+  color: white;
+}
+
+.account-edit-form .error-message {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: red;
+}

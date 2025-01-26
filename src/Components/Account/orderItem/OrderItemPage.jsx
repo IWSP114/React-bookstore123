@@ -1,10 +1,10 @@
 import { useCookies } from 'react-cookie';
 import { useEffect, useState } from "react"
-import { decryptData } from '../../utility/crypto';
+import { decryptData } from '../../../utility/crypto';
 import { useNavigate, Link } from 'react-router-dom';
 
 import './OrderItemPage.css'
-
+import AccountOpinion from '../account-opinion/account-opinions';
 
 function OrderItemPage() {
   const navigate = useNavigate();
@@ -28,18 +28,21 @@ function OrderItemPage() {
 
       <div className="order-item-page-context">
 
+        <AccountOpinion />
+        {/* 
         <div className="account-opinions">
               <div className="account-opinions-username-container">
                 <span>{username}</span>
               </div>
 
               <div className="account-opinions-opinion-container">
-                <Link to="/orders" className="nav-link"><div className="account-opinions-opinion">Order</div></Link>
-                <Link to="/orders" className="nav-link"><div className="account-opinions-opinion">Modify profile</div></Link>
-                <Link to="/orders" className="nav-link"><div className="account-opinions-opinion">Lost password</div></Link>
-                <Link to="/logout" className="nav-link"><div className="account-opinions-opinion">Log Out</div></Link>
+                <Link to="/orders"><div className="account-opinions-opinion">Order</div></Link>
+                <Link to="/orders"><div className="account-opinions-opinion">Modify profile</div></Link>
+                <Link to="/orders"><div className="account-opinions-opinion">Lost password</div></Link>
+                <Link to="/logout"><div className="account-opinions-opinion">Log Out</div></Link>
               </div>
         </div>
+        */}
 
         <div className="order-item-context">
             <span>Order #IJ34567890ABCDE was placed on 2025-01-25 and is currently Comfirmed.</span>

@@ -1,15 +1,27 @@
 import { useCookies } from 'react-cookie';
 import { useEffect, useState } from "react"
-import { decryptData } from '../../utility/crypto';
+import { decryptData } from '../../../utility/crypto';
 import { useNavigate, Link } from 'react-router-dom';
+import ToTwoDecimal from '../../../utility/ToTwoDecimal';
 
 import './OrderPage.css'
+import AccountOpinion from '../account-opinion/account-opinions';
 
 
 function OrderPage() {
   const navigate = useNavigate();
   const [cookies] = useCookies(['user']);
   const [username, setUsername] = useState("Guest");
+
+  const Orders = [
+    {
+      orderID: "#IJ34567890ABCDE",
+      date: "2025-01-25",
+      status: "Comfirmed",
+      total_prices: 30.00,
+      total_quantity: 1
+    }
+  ];
 
   useEffect(() => {
       const usernameCookie = cookies.user ? decryptData(cookies.user).username : 'Guest';
@@ -28,6 +40,8 @@ function OrderPage() {
 
       <div className="order-page-context">
 
+        <AccountOpinion />
+        {/* 
         <div className="account-opinions">
               <div className="account-opinions-username-container">
                 <span>{username}</span>
@@ -40,6 +54,7 @@ function OrderPage() {
                 <Link to="/logout"><div className="account-opinions-opinion">Log Out</div></Link>
               </div>
         </div>
+        */}
 
         <div className="order-lists">
             <div className="order-lists-title-container">
@@ -52,29 +67,15 @@ function OrderPage() {
 
             <div className="order-lists-context-container">
                 {/* Map function */}
-                <div className="order-item-container">
-                    <span className="order-lists-item-order"><Link to="/orders/123">#IJ34567890ABCDE</Link></span>
-                    <span className="order-lists-item-date">2025-01-25</span>
-                    <span className="order-lists-item-status">Comfirmed</span>
-                    <span className="order-lists-item-total"><b>USD$30.00</b> for 1 item</span>
+                {Orders.map((OrderItem)=> 
+                <div className="order-item-container" key={OrderItem.orderID}>
+                    <span className="order-lists-item-order"><Link to="/orders/123">{OrderItem.orderID}</Link></span>
+                    <span className="order-lists-item-date">{OrderItem.date}</span>
+                    <span className="order-lists-item-status">{OrderItem.status}</span>
+                    <span className="order-lists-item-total"><b>USD${ToTwoDecimal(OrderItem.total_prices)}</b> for {OrderItem.total_quantity} item</span>
                     <span className="order-lists-item-actions">ACTIONS</span>
                 </div>
-
-                <div className="order-item-container">
-                    <span className="order-lists-item-order"><Link to="/orders/123">#IJ34567890ABCDE</Link></span>
-                    <span className="order-lists-item-date">2025-01-25</span>
-                    <span className="order-lists-item-status">Comfirmed</span>
-                    <span className="order-lists-item-total"><b>USD$30.00</b> for 1 item</span>
-                    <span className="order-lists-item-actions">ACTIONS</span>
-                </div>
-
-                <div className="order-item-container">
-                    <span className="order-lists-item-order"><Link to="/orders/123">#IJ34567890ABCDE</Link></span>
-                    <span className="order-lists-item-date">2025-01-25</span>
-                    <span className="order-lists-item-status">Comfirmed</span>
-                    <span className="order-lists-item-total"><b>USD$30.00</b> for 1 item</span>
-                    <span className="order-lists-item-actions">ACTIONS</span>
-                </div>
+                )}
                  {/*   Map function  */}
             </div>
         </div>
