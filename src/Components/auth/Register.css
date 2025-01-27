@@ -27,6 +27,13 @@ h2 {
 .form-group {
   margin-bottom: 1.25rem;
 }
+
+.form-group .error-message {
+ display: block;
+ color: red;
+ padding: 0.5rem 0;
+}
+
 .submit-group {
   display: flex;
   justify-content: center;

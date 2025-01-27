@@ -1,7 +1,8 @@
 import { useCookies } from 'react-cookie';
 import { useEffect, useRef, useState } from "react"
 import { encryptData, decryptData } from '../../../utility/crypto';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 import './ModifyProfilePage.css'
 import AccountOpinion from '../account-opinion/account-opinions';
@@ -10,8 +11,17 @@ import AccountOpinion from '../account-opinion/account-opinions';
 function ModifyProfilePage() {
   const navigate = useNavigate();
   const [cookies, setCookie] = useCookies(['user']);
-  const [username, setUsername] = useState("Guest");
+  const usernameCookie = cookies.user ? decryptData(cookies.user).username : 'Guest';
+  const [username, setUsername] = useState(usernameCookie);
   const messageRef = useRef();
+
+  const [newUsername, setNewUsername] = useState("Username");
+  const [newDisplayName, setNewDisplayName] = useState("Username");
+  const [newEmail, setNewEmail] = useState("example@gmail.com");
+  const [message, setMessage] = useState("");
+
+  const [loading, setLoading] = useState(true); // State for loading status
+  const [error, setError] = useState(null); // State for error handling
 
   useEffect(() => {
       const usernameCookie = cookies.user ? decryptData(cookies.user).username : 'Guest';
@@ -20,12 +30,27 @@ function ModifyProfilePage() {
       }
       setUsername(usernameCookie);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cookies.user]);
 
-  const [newUsername, setNewUsername] = useState("Username");
-  const [newDisplayName, setNewDisplayName] = useState("Username");
-  const [newEmail, setNewEmail] = useState("example@gmail.com");
-  const [message, setMessage] = useState("");
+  useEffect(() => {
+    const fetchData = async () => {
+        try {
+            const response = await axios.get(`http://localhost:5000/getUser/${username}`); // Replace with your API endpoint
+            setNewUsername(response.data.userdata[0].username);
+            setNewDisplayName(response.data.userdata[0].display_name);
+            setNewEmail(response.data.userdata[0].email);
+
+        } catch (error) {
+            setError(error.message); // Set error message in state
+        } finally {
+            setLoading(false); // Set loading to false after fetching
+        }
+    };
+
+    fetchData(); // Call the fetch function
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Empty dependency array means this effect runs once on mount
 
   function handleUsernameChange(event) {
     setNewUsername(event.target.value);
@@ -49,23 +74,43 @@ function ModifyProfilePage() {
     setNewEmail(event.target.value);
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     if(newUsername !== '' && newDisplayName !== '' && newEmail !== '') {
 
       event.preventDefault();
       //submit to backend
+      const userData = { username: newUsername, email: newEmail, display_name: newDisplayName };
+      try {
+        const response = await axios.patch(`http://localhost:5000/updateUser/${username}`, userData);
 
-      //After finish
-      const userData = { username: newDisplayName };
-      const encryptedData = encryptData(userData);
-      setCookie('user', encryptedData, { path: '/', maxAge: 3000 });
-
-      setNewUsername("");
-      setNewDisplayName("");
-      setNewEmail("");
+        if(response.status === 200 && response.data.message === 'User information has been updated') {
+            const encryptedData = encryptData(userData);
+            setCookie('user', encryptedData, { path: '/', maxAge: 3000 });
+            navigate('/'); // Navigate after successful login
+        } 
+      } catch (error) {
+        // Suppress default error logging
+        if (error.response) {
+            // Handle known errors from server responses
+            setMessage(error.response.data.message);
+        } else if (error.request) {
+            // The request was made but no response was received
+            setMessage('No response received from server.');
+        } else {
+            // Something happened in setting up the request that triggered an Error
+            setMessage('An error occurred while making the request.');
+        }
+        // Clear input fields after an error
+        setNewUsername("");
+        setNewDisplayName("");
+        setNewEmail("");
+      }
     }
     
   }
+
+  if (loading) return <div>Loading...</div>; // Display loading state
+  if (error) return <div>Error: {error}</div>; // Display error message
 
   return (
     <div className="account-edit-container">
@@ -75,20 +120,6 @@ function ModifyProfilePage() {
 
       <div className="account-edit-context">
         <AccountOpinion />
-        {/* 
-        <div className="account-opinions">
-              <div className="account-opinions-username-container">
-                <span>{username}</span>
-              </div>
-
-              <div className="account-opinions-opinion-container">
-                <Link to="/orders"><div className="account-opinions-opinion">Order</div></Link>
-                <Link to="/orders"><div className="account-opinions-opinion">Modify profile</div></Link>
-                <Link to="/orders"><div className="account-opinions-opinion">Lost password</div></Link>
-                <Link to="/logout"><div className="account-opinions-opinion">Log Out</div></Link>
-              </div>
-        </div>
-        */}
 
         <div className="account-edit-form">
           <form onSubmit={handleSubmit} action="#">

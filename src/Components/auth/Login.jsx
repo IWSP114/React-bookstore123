@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react'
 import closeEyeIcon from "../../assets/close-eye-icon.png"
 import openEyeIcon from "../../assets/open-eye-icon.png"
+import axios from 'axios'; // Import Axios
 import './Login.css'
 
 function Login() {
@@ -14,6 +15,7 @@ function Login() {
     const [password, setPassword] = useState("");
 
     const [showPassword, setShowPassword] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
 
     useEffect(() => {
         document.addEventListener('keydown', (event) => {
@@ -26,13 +28,35 @@ function Login() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [password, username])
   
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        const userData = { username: username };
-        const encryptedData = encryptData(userData);
-        setCookie('user', encryptedData, { path: '/', maxAge: 3000 });
-        
-        navigate('/');
+
+        const userData = { table: "users", username: username, password: password };
+        try {
+            const response = await axios.post('http://localhost:5000/login', userData);
+
+            if(response.status === 200 && response.data.message === 'Success!') {
+                const encryptedData = encryptData(userData);
+                setCookie('user', encryptedData, { path: '/', maxAge: 3000 });
+                navigate('/'); // Navigate after successful login
+            } 
+        } catch (error) {
+            // Suppress default error logging
+            if (error.response) {
+                // Handle known errors from server responses
+                setErrorMessage(error.response.data.message);
+            } else if (error.request) {
+                // The request was made but no response was received
+                setErrorMessage('No response received from server.');
+            } else {
+                // Something happened in setting up the request that triggered an Error
+                setErrorMessage('An error occurred while making the request.');
+            }
+            // Clear input fields after an error
+            setUsername("");
+            setPassword("");
+        }
+
     };
 
     function handleShowPassword() {
@@ -46,7 +70,7 @@ function Login() {
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="username">Username:</label>
-                        <input type="text" id="username" name="username" onChange={(e) => setUsername(e.target.value)} required/>
+                        <input type="text" id="username" name="username" onChange={(e) => setUsername(e.target.value)} value={username} required/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="password">Password:</label>
@@ -56,6 +80,7 @@ function Login() {
                             <img src={showPassword ? openEyeIcon : closeEyeIcon} className="password-showing-icon"/>
                         </button>
                         </div> 
+                        <span className="error-message">{errorMessage}</span>
                     </div>
                     <div className="submit-group">
                         <input type="submit" value="Login"/>

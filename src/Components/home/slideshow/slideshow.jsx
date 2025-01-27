@@ -19,12 +19,12 @@ const Slideshow = ({ slides }) => {
   };
 
   useEffect(() => {
-    const slideAuto = setTimeout(() => {
+    const slideAuto = setInterval(() => {
       goToNextSlide()
     }, 10000);
 
     return () => {
-      clearTimeout(slideAuto);
+      clearInterval(slideAuto);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
