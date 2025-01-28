@@ -1,12 +1,34 @@
 
 import './Product.css';
-import { useContext, memo } from "react"
-import { ProductContext } from "../../utility/CartLoader";
+import { useState, useEffect, memo } from "react"
 import { Link } from 'react-router-dom';
 import ImageLoader from '../../utility/ImageLoader/ImageLoader';
+import axios from 'axios';
 
 function Product() {
-    const { products,  } = useContext(ProductContext);
+    const [data, setData] = useState([]); // State for storing fetched data
+    const [loading, setLoading] = useState(true); // State for loading status
+    const [error, setError] = useState(null); // State for error handling
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`http://localhost:5000/getProduct`); // Replace with your API endpoint
+                setData(response.data.Products); // Update state with fetched data
+                console.log(response.data.Products);
+    
+            } catch (error) {
+                setError(error.message); 
+            } finally {
+                setLoading(false); 
+            }
+        };
+    
+        fetchData(); 
+      }, []); 
+
+    if (loading) return <div>Loading...</div>; // Display loading state
+    if (error) return <div>Error: {error}</div>; // Display error message
     
     return (
         <>
@@ -26,7 +48,7 @@ function Product() {
                 </div>
                 <div className="product-display-container">
                     {
-                        products.map((productItem)=>
+                        data.map((productItem)=>
                                 <div className="product-item-container-box" key={productItem.productID}>
                                     <Link to={`/product/${productItem.productID}`}>
                                         <div className="product-item-container">
