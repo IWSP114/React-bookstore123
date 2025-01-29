@@ -15,14 +15,18 @@ import listLogo from '../assets/order-list-icon.png'
 function Header() {
     const [cookies] = useCookies(['user']);
     const [username, setUsername] = useState("Guest");
+    const [displayName, setDisplayName] = useState("");
 
     useEffect(() => {
         //console.log(import.meta.env.VITE_API_URL)
         const usernameCookie = cookies.user ? decryptData(cookies.user).username : 'Guest';
+        const displaynameCookie = cookies.user ? decryptData(cookies.user).display_name : 'Guest';
         if (username !== usernameCookie) {
             setUsername(usernameCookie);
+            setDisplayName(displaynameCookie);
+
         }
-    }, [cookies.user, username]);
+    }, [cookies.user, username, displayName]);
     
     const { cart,  } = useContext(CartContext);
 
@@ -41,7 +45,7 @@ function Header() {
            
          </div>
          <div className="upper-nav-bar-right">
-            <div className="welcome-message">Welcome, <b><u>{username}</u></b></div>
+            <div className="welcome-message">Welcome, <b><u>{displayName}</u></b></div>
             {
                 username === "Guest"
                 ? 

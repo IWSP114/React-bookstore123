@@ -36,7 +36,8 @@ function Login() {
             const response = await axios.post('http://localhost:5000/login', userData);
 
             if(response.status === 200 && response.data.message === 'Success!') {
-                const encryptedData = encryptData(userData);
+                console.log(response.data.data[0]);
+                const encryptedData = encryptData(response.data.data[0]);
                 setCookie('user', encryptedData, { path: '/', maxAge: 3000 });
                 navigate('/'); // Navigate after successful login
             } 

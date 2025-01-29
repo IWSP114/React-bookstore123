@@ -1,5 +1,4 @@
-import {encryptData} from '../../utility/crypto.js'
-import { useCookies } from 'react-cookie';
+
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react'
 import closeEyeIcon from "../../assets/close-eye-icon.png"
@@ -10,7 +9,6 @@ import './Register.css'
 
 function Register() {
     const navigate = useNavigate();
-    const [, setCookie] = useCookies(['user']);
 
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
@@ -43,9 +41,7 @@ function Register() {
             const response = await axios.post('http://localhost:5000/register', userData);
 
             if(response.status === 200 && response.data.message === 'Register successful!') {
-                const encryptedData = encryptData(userData);
-                setCookie('user', encryptedData, { path: '/', maxAge: 3000 });
-                navigate('/'); // Navigate after successful login
+                navigate('/;ogin'); // Navigate after successful login
             } 
         } catch (error) {
             // Suppress default error logging
@@ -95,7 +91,7 @@ function Register() {
                     </div>
                     <div className="form-group">
                         <label htmlFor="username">Username:</label>
-                        <input type="text" id="username" name="username" onChange={(e) => setUsername(e.target.value)} required/>
+                        <input type="text" id="username" name="username" onChange={(e) => setUsername(e.target.value)} value={username} required/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="password">Password:</label>

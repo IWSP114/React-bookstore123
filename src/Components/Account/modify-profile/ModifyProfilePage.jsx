@@ -128,7 +128,7 @@ function ModifyProfilePage() {
 
             <label htmlFor="display-name" className="display-name-title">Display Name:</label>
             <input id="display-name" className="display-name" value={newDisplayName} onChange={(e) => handleDisplayNameChange(e)} required />
-            <span><i>This will be how your name will be displayed in the account section and in reviews.</i></span>
+            <span><i>This will be how your name will be displayed in the account section and in reviews.<br/>Your display name will renew after refresh.</i></span>
 
             <label htmlFor="email" className="email-title">Email Address:</label>
             <input id="email" className="email" value={newEmail} onChange={(e) => handleEmailChange(e)} required />

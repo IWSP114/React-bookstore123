@@ -1,5 +1,5 @@
 
-import { useContext, useEffect, memo } from "react"
+import { useContext, useEffect, memo, useState } from "react"
 import { CartContext } from "../../utility/CartLoader.jsx"
 import { useNavigate } from 'react-router-dom';
 import './Cart.css'
@@ -8,12 +8,17 @@ import { decryptData } from '../../utility/crypto.js'
 import { useCookies } from 'react-cookie';
 import ImageLoader from "../../utility/ImageLoader/ImageLoader.jsx";
 import ToTwoDecimal from "../../utility/ToTwoDecimal.js";
+import axios from "axios";
 
 
 function Cart() {
     const navigate = useNavigate();
     const { cart, setCart } = useContext(CartContext);
     const [cookies] = useCookies(['user']);
+    const [errorMessage, setErrorMessage] = useState("");
+    const [userID, setUserID] = useState("");
+    //const [loading, setLoading] = useState(true); // State for loading status
+    //const [error, setError] = useState(null); // State for error handling
     const username = cookies.user ? decryptData(cookies.user).username : 'Guest';
 
     
@@ -23,9 +28,45 @@ function Cart() {
       }
     })
 
-    function handlePlaceOrder() {
-      setCart([]);
-      navigate('/');
+    useEffect(() => {
+      const usernameID = cookies.user ? decryptData(cookies.user).id : 0;
+      setUserID(usernameID);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    async function handlePlaceOrder() {
+
+      const data = { 
+        customerID: userID, 
+        cart: cart , 
+        price: (Math.round(cart.reduce((acc, item)=> acc + (item.quantity * item.price), 0) * 100) / 100).toFixed(2), 
+        total: cart.reduce((acc, item)=> acc + item.quantity, 0)
+      };
+
+      try {
+        const response = await axios.post('http://localhost:5000/create-order', data);
+
+        if(response.status === 200  && response.data.message === 'Your order placed successfully!') {
+          console.log('Successful!')
+          setCart([]);
+          localStorage.removeItem('cart');
+          navigate('/');
+        } 
+      } catch (error) {
+          // Suppress default error logging
+          if (error.response) {
+              // Handle known errors from server responses
+              setErrorMessage(error.response.data.message);
+          } else if (error.request) {
+              // The request was made but no response was received
+              setErrorMessage('No response received from server.');
+          } else {
+              // Something happened in setting up the request that triggered an Error
+              setErrorMessage('An error occurred while making the request.');
+          }
+          // Clear input fields after an error
+      }
+
     }
 
     function handleQuantityAdd(cartItem) {
@@ -116,6 +157,7 @@ function Cart() {
                     <div className="pay-button-container">
                       <button className="pay-button" onClick={handlePlaceOrder}>Place Order</button>
                     </div>
+                    <span className="error-message">{errorMessage}</span>
                 </div>
               </div>
               

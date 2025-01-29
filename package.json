@@ -13,6 +13,7 @@
     "axios": "^1.7.9",
     "cookie-parser": "^1.4.7",
     "crypto-js": "^4.2.0",
+    "dayjs": "^1.11.13",
     "jsonwebtoken": "^9.0.2",
     "jwt-decode": "^4.0.0",
     "jwt-simple": "^0.5.6",
