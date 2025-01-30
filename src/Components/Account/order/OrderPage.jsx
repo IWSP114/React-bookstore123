@@ -80,9 +80,9 @@ function OrderPage() {
             <div className="order-lists-context-container">
                 {/* Map function */}
                 {data.map((OrderItem)=> 
-                <div className="order-item-container" key={OrderItem.orderID}>
-                    <span className="order-lists-item-order"><Link to="/orders/123">{OrderItem.orderID}</Link></span>
-                    <span className="order-lists-item-date">{OrderItem.orderDate}</span>
+                <div className="order-item-container" key={OrderItem.ordersID}>
+                    <span className="order-lists-item-order"><Link to={`/orders/${OrderItem.ordersID}`}>{OrderItem.ordersID}</Link></span>
+                    <span className="order-lists-item-date">{OrderItem.ordersDate}</span>
                     <span className="order-lists-item-status">Comfirmed</span>
                     <span className="order-lists-item-total"><b>USD${OrderItem.totalPrices}</b> for {OrderItem.totalAmounts} item</span>
                     <span className="order-lists-item-actions">ACTIONS</span>

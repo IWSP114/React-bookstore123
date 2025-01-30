@@ -84,7 +84,14 @@ function ModifyProfilePage() {
         const response = await axios.patch(`http://localhost:5000/updateUser/${username}`, userData);
 
         if(response.status === 200 && response.data.message === 'User information has been updated') {
-            const encryptedData = encryptData(userData);
+            const newcookie = {
+              id: decryptData(cookies.user).id,
+              username: userData.username,
+              display_name: userData.display_name,
+              email: userData.email
+            }
+            const encryptedData = encryptData(newcookie);
+  
             setCookie('user', encryptedData, { path: '/', maxAge: 3000 });
             navigate('/'); // Navigate after successful login
         } 

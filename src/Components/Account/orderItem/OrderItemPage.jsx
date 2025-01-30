@@ -1,15 +1,21 @@
 import { useCookies } from 'react-cookie';
 import { useEffect, useState } from "react"
 import { decryptData } from '../../../utility/crypto';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import './OrderItemPage.css'
 import AccountOpinion from '../account-opinion/account-opinions';
+import axios from 'axios';
 
 function OrderItemPage() {
   const navigate = useNavigate();
   const [cookies] = useCookies(['user']);
   const [username, setUsername] = useState("Guest");
+  let { OrderID } = useParams();
+
+  const [data, setData] = useState([]); // State for storing fetched data
+  const [loading, setLoading] = useState(true); // State for loading status
+  const [error, setError] = useState(null); // State for error handling
 
   useEffect(() => {
       const usernameCookie = cookies.user ? decryptData(cookies.user).username : 'Guest';
@@ -20,6 +26,26 @@ function OrderItemPage() {
 
   }, [cookies.user, navigate, username]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+        try {
+            const response = await axios.get(`http://localhost:5000/getSingleOrder/${OrderID}`); // Replace with your API endpoint
+            setData(response.data); // Update state with fetched data\
+            console.log(data[0]);
+        } catch (error) {
+            setError(error.message); 
+        } finally {
+            setLoading(false); 
+        }
+    };
+
+    fetchData(); 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); 
+
+  if (loading) return <div>Loading...</div>; // Display loading state
+  if (error) return <div>Error: {error}</div>; // Display error message
+
   return (
     <div className="order-item-body-container">
       <div className="order-item-page-title">
@@ -29,24 +55,10 @@ function OrderItemPage() {
       <div className="order-item-page-context">
 
         <AccountOpinion />
-        {/* 
-        <div className="account-opinions">
-              <div className="account-opinions-username-container">
-                <span>{username}</span>
-              </div>
-
-              <div className="account-opinions-opinion-container">
-                <Link to="/orders"><div className="account-opinions-opinion">Order</div></Link>
-                <Link to="/orders"><div className="account-opinions-opinion">Modify profile</div></Link>
-                <Link to="/orders"><div className="account-opinions-opinion">Lost password</div></Link>
-                <Link to="/logout"><div className="account-opinions-opinion">Log Out</div></Link>
-              </div>
-        </div>
-        */}
 
         <div className="order-item-context">
-            <span>Order #IJ34567890ABCDE was placed on 2025-01-25 and is currently Comfirmed.</span>
-            <span className="order-title">Order Details #IJ34567890ABCDE</span>
+            <span>Order {data.data[0].ordersID} was placed on {data.data[0].ordersDate} and is currently Comfirmed.</span>
+            <span className="order-title">Order Details {data.data[0].ordersID}</span>
 
             <div className="order-item-details-container">
                 <div className="order-item-title">
@@ -54,19 +66,17 @@ function OrderItemPage() {
                   <span>TOTAL</span> 
                 </div>
 
-                <div className="order-item-details">
-                  <span>PRODUCT NAME x 1</span>
-                  <span><b>USD$30.00</b></span> 
+               {(data.products).map((product) =>
+                <div className="order-item-details" key={product.productID}>
+                <span>{product.productName} x {product.productQuantity}</span>
+                <span><b>USD${product.productPrice * product.productQuantity}</b></span> 
                 </div>
-
-                <div className="order-item-details">
-                  <span>PRODUCT NAME x 1</span>
-                  <span><b>USD$30.00</b></span> 
-                </div>
+              
+              )}
 
                 <div className="order-item-details">
                   <span>Subtotal:</span>
-                  <span><b>USD$60.00</b></span> 
+                  <span><b>USD${data.data[0].totalPrices}</b></span> 
                 </div>
 
                 <div className="order-item-details">
@@ -81,7 +91,7 @@ function OrderItemPage() {
 
                 <div className="order-item-details">
                   <span>Total:</span>
-                  <span><b>USD$60.00</b></span> 
+                  <span><b>USD${data.data[0].totalPrices}</b></span> 
                 </div>
             </div>
         </div>

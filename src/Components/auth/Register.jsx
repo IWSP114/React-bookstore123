@@ -41,7 +41,7 @@ function Register() {
             const response = await axios.post('http://localhost:5000/register', userData);
 
             if(response.status === 200 && response.data.message === 'Register successful!') {
-                navigate('/;ogin'); // Navigate after successful login
+                navigate('/login'); // Navigate after successful login
             } 
         } catch (error) {
             // Suppress default error logging
