@@ -1,30 +1,20 @@
-import { useCookies } from 'react-cookie';
+
 import { useEffect, useState } from "react"
-import { decryptData } from '../../../utility/crypto';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import useAuthRedirect from '../../../utility/checkLoginMiddleware';
 
 import './OrderItemPage.css'
 import AccountOpinion from '../account-opinion/account-opinions';
 import axios from 'axios';
 
 function OrderItemPage() {
-  const navigate = useNavigate();
-  const [cookies] = useCookies(['user']);
-  const [username, setUsername] = useState("Guest");
   let { OrderID } = useParams();
 
   const [data, setData] = useState([]); // State for storing fetched data
   const [loading, setLoading] = useState(true); // State for loading status
   const [error, setError] = useState(null); // State for error handling
 
-  useEffect(() => {
-      const usernameCookie = cookies.user ? decryptData(cookies.user).username : 'Guest';
-      if(usernameCookie === 'Guest') {
-        navigate('/login');
-      }
-      setUsername(usernameCookie);
-
-  }, [cookies.user, navigate, username]);
+  const { loadingAuth } = useAuthRedirect();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,6 +33,7 @@ function OrderItemPage() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); 
 
+  if (loadingAuth) return <div>Loading...</div>; // Display loading state
   if (loading) return <div>Loading...</div>; // Display loading state
   if (error) return <div>Error: {error}</div>; // Display error message
 

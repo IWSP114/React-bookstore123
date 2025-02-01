@@ -15,6 +15,7 @@ const OrderPage = lazy(()=> import ('./Components/Account/order/OrderPage.jsx'))
 const OrderItemPage = lazy(() => import ('./Components/Account/orderItem/OrderItemPage.jsx'));
 const ModifyProfilePage = lazy(() => import ('./Components/Account/modify-profile/ModifyProfilePage.jsx'))
 const LostPssword = lazy(() => import ('./Components/auth/LostPassword.jsx'));
+const CreateProduct = lazy (() => import ('./Components/productControl/createProducts.jsx'));
 import { CartObject } from './utility/CartObject.jsx';
 import { ProductObject } from './utility/ProductsObject.jsx';
 import Header from './header/header.jsx';
@@ -44,6 +45,7 @@ function App() {
                         <Route path="/orders" element={<Suspense fallback={<div>Loading...</div>}><OrderPage /></Suspense>} />
                         <Route path="/orders/:OrderID" element={<Suspense fallback={<div>Loading...</div>}><OrderItemPage /></Suspense>} />
                         <Route path="/account/edit-account" element={<Suspense fallback={<div>Loading...</div>}><ModifyProfilePage /></Suspense>} />
+                        <Route path="/staff/create-products" element={<Suspense fallback={<div>Loading...</div>}><CreateProduct /></Suspense>} />
                         <Route path="*" element={<Home />} />
                     </Routes>
                     <ScrollToTop smooth />

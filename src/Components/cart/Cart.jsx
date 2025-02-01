@@ -8,6 +8,7 @@ import { decryptData } from '../../utility/crypto.js'
 import { useCookies } from 'react-cookie';
 import ImageLoader from "../../utility/ImageLoader/ImageLoader.jsx";
 import ToTwoDecimal from "../../utility/ToTwoDecimal.js";
+import useAuthRedirect from "../../utility/checkLoginMiddleware.jsx";
 import axios from "axios";
 
 
@@ -19,14 +20,8 @@ function Cart() {
     const [userID, setUserID] = useState("");
     //const [loading, setLoading] = useState(true); // State for loading status
     //const [error, setError] = useState(null); // State for error handling
-    const username = cookies.user ? decryptData(cookies.user).username : 'Guest';
-
     
-    useEffect(()=> {
-      if(username === 'Guest') {
-        navigate('/login');
-      }
-    })
+    const { loadingAuth } = useAuthRedirect();
 
     useEffect(() => {
       const usernameID = cookies.user ? decryptData(cookies.user).id : 0;
@@ -87,6 +82,7 @@ function Cart() {
       console.log(cart);
     })
 
+    if (loadingAuth) return <div>Loading...</div>; // Display loading state
     return (
         <>
             <div className="body-container">

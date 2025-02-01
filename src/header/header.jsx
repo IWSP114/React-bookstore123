@@ -28,7 +28,7 @@ function Header() {
         }
     }, [cookies.user, username, displayName]);
     
-    const { cart,  } = useContext(CartContext);
+    const { cart } = useContext(CartContext);
 
   return (
     <nav className="nav-bar">

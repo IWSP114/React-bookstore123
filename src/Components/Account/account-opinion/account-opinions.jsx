@@ -1,20 +1,12 @@
-import { useCookies } from 'react-cookie';
 import { Link } from 'react-router-dom';
-import { decryptData } from '../../../utility/crypto';
-import { useState, useEffect } from 'react';
+import useAuthRedirect from '../../../utility/checkLoginMiddleware';
 import './account-opinions.css'
 
 function AccountOpinion() {
-
-  const [cookies] = useCookies(['user']);
-  const [username, setUsername] = useState("Guest");
   
-  useEffect(() => {
-        const usernameCookie = cookies.user ? decryptData(cookies.user).username : 'Guest';
-        setUsername(usernameCookie);
-  
-    }, [cookies.user]);
+  const { username, loadingAuth } = useAuthRedirect();
 
+  if (loadingAuth) return <div>Loading...</div>; // Display loading state
   return (
     <div className="account-opinions">
               <div className="account-opinions-username-container">

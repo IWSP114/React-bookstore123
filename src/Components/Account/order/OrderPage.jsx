@@ -1,7 +1,8 @@
 import { useCookies } from 'react-cookie';
 import { useEffect, useState } from "react"
 import { decryptData } from '../../../utility/crypto';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import useAuthRedirect from '../../../utility/checkLoginMiddleware';
 
 import './OrderPage.css'
 import AccountOpinion from '../account-opinion/account-opinions';
@@ -9,32 +10,13 @@ import axios from 'axios';
 
 
 function OrderPage() {
-  const navigate = useNavigate();
   const [cookies] = useCookies(['user']);
-  const [username, setUsername] = useState("Guest");
 
   const [data, setData] = useState([]); // State for storing fetched data
   const [loading, setLoading] = useState(true); // State for loading status
   const [error, setError] = useState(null); // State for error handling
 
-  // const Orders = [
-  //   {
-  //     orderID: "#IJ34567890ABCDE",
-  //     date: "2025-01-25",
-  //     status: "Comfirmed",
-  //     total_prices: 30.00,
-  //     total_quantity: 1
-  //   }
-  // ];
-
-  useEffect(() => {
-      const usernameCookie = cookies.user ? decryptData(cookies.user).username : 'Guest';
-      if(usernameCookie === 'Guest') {
-        navigate('/login');
-      }
-      setUsername(usernameCookie);
-
-  }, [cookies.user, navigate, username]);
+  const { loadingAuth } = useAuthRedirect();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,7 +36,8 @@ function OrderPage() {
     fetchData(); 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); 
-
+  
+  if (loadingAuth) return <div>Loading...</div>; // Display loading state
   if (loading) return <div>Loading...</div>; // Display loading state
   if (error) return <div>Error: {error}</div>; // Display error message
 
@@ -78,7 +61,6 @@ function OrderPage() {
             </div>
 
             <div className="order-lists-context-container">
-                {/* Map function */}
                 {data.map((OrderItem)=> 
                 <div className="order-item-container" key={OrderItem.ordersID}>
                     <span className="order-lists-item-order"><Link to={`/orders/${OrderItem.ordersID}`}>{OrderItem.ordersID}</Link></span>
@@ -88,7 +70,6 @@ function OrderPage() {
                     <span className="order-lists-item-actions">ACTIONS</span>
                 </div>
                 )}
-                 {/*   Map function  */}
             </div>
         </div>
 
