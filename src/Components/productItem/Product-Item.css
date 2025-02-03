@@ -48,6 +48,17 @@ dialog {
   display: block;
 }
 
+.product-item-body-container .product-item-container .product-item-context-container .product-item-context-author {
+  font-size: 1rem;
+  font-weight: 300;
+  color: rgb(68, 68, 68);
+  margin: 0 1rem;
+  padding: 0.625rem 0.625rem;
+
+  display: block;
+  border-top: 1px dashed rgb(68, 68, 68);
+}
+
 .product-item-body-container .product-item-container .product-item-context-container .product-item-context-categories {
   font-size: 1rem;
   font-weight: 300;

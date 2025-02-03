@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import './popularItem.css'
-import ImageLoader from "../../../utility/ImageLoader/ImageLoader"
+//import ImageLoader from "../../../utility/ImageLoader/ImageLoader"
 import { Link } from 'react-router-dom';
 import axios from "axios";
 import ToTwoDecimal from "../../../utility/ToTwoDecimal";
@@ -15,7 +15,6 @@ function PopularItem() {
         try {
             const response = await axios.get(`http://localhost:5000/getProduct`); // Replace with your API endpoint
             setData(response.data.Products); // Update state with fetched data
-            console.log(response.data.Products);
 
         } catch (error) {
             setError(error.message); 
@@ -43,11 +42,11 @@ function PopularItem() {
               <div className="popular-item-container" key={product.productID}>
                 <Link to={`/product/${product.productID}`} >
                   <div className="popular-item-image-container">
-                    <ImageLoader
-                      ProductID={product.productID}
-                      Width={100}
-                      Height={100}
-                    />
+                  <img src={product.imageUrl} alt="Loading" style={{
+                      height: '100%',
+                      width: '100%',
+                      objectFit: 'contain'
+                  }}/>
                   </div>
 
                   <div className="popular-item-name-container">

@@ -67,12 +67,12 @@ function OrderItemPage() {
 
                 <div className="order-item-details">
                   <span>Subtotal:</span>
-                  <span><b>USD${data.data[0].totalPrices}</b></span> 
+                  <span><b>USD${data.data[0].subtotalPrice}</b></span> 
                 </div>
 
                 <div className="order-item-details">
                   <span>Shipping:</span>
-                  <span>SF Express</span> 
+                  <span><b>USD${data.data[0].shippingPrice}</b></span> 
                 </div>
 
                 <div className="order-item-details">
@@ -82,7 +82,7 @@ function OrderItemPage() {
 
                 <div className="order-item-details">
                   <span>Total:</span>
-                  <span><b>USD${data.data[0].totalPrices}</b></span> 
+                  <span><b>USD${data.data[0].subtotalPrice + data.data[0].shippingPrice}</b></span> 
                 </div>
             </div>
         </div>

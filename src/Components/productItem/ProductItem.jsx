@@ -1,9 +1,10 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { AddToCartButton } from "../../utility/AddToCart/AddToCart";
 import { useParams } from 'react-router-dom';
-import ImageLoader from "../../utility/ImageLoader/ImageLoader";
+//import ImageLoader from "../../utility/ImageLoader/ImageLoader";
 import './Product-Item.css'
 import axios from "axios";
+import AddToWishlist from "./addToWishlist/addToWishlist";
 
 function ProductItem() {
 
@@ -13,6 +14,7 @@ function ProductItem() {
       const dialogRef = useRef();
 
       const [data, setData] = useState([]); // State for storing fetched data
+      const [imageURL, setImageURL] = useState();
       const [loading, setLoading] = useState(true); // State for loading status
       const [error, setError] = useState(null); // State for error handling
 
@@ -21,8 +23,7 @@ function ProductItem() {
             try {
                 const response = await axios.get(`http://localhost:5000/getProduct/${ProductID}`); // Replace with your API endpoint
                 setData(response.data.Products[0]); // Update state with fetched data
-                console.log(response.data.Products);
-    
+                setImageURL(response.data.Products[0].imageUrl);
             } catch (error) {
                 setError(error.message); 
             } finally {
@@ -34,17 +35,17 @@ function ProductItem() {
       // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []); 
 
-      function handleSubtractChange() {
+      const handleSubtractChange = useCallback(() => {
         if(quantity > 1) {
-          setQuantity(q => q - 1);
+            setQuantity(q => q - 1);
         }
-      }
+    }, [quantity]);
 
-      function handleAddChange() {
+    const handleAddChange = useCallback(() => {
         if(quantity < 99) {
-          setQuantity(q => q + 1);
+            setQuantity(q => q + 1);
         }
-      }   
+    }, [quantity]);
       
       function closeModal() {
         dialogRef.current?.close();
@@ -73,11 +74,11 @@ function ProductItem() {
             {activeImage && (
               <>
                 <div className="dialog-div">
-                  <ImageLoader
-                    ProductID={data.productID}
-                    Width={100}
-                    Height={100}
-                  />
+                  <img src={imageURL} alt="Loading" style={{
+                    height: '100%',
+                    width: '100%',
+                    objectFit: 'contain'
+                  }}/>
                   <button className="dialog-button" onClick={closeModal}>
                     X
                   </button>
@@ -89,17 +90,18 @@ function ProductItem() {
           <div className="product-item-container">
             <div className="product-item-picture-container">
               <span onClick={() => setActiveImage(data)}>
-                <ImageLoader
-                  ProductID={data.productID}
-                  Width={100}
-                  Height={100}
-                />
+              <img src={imageURL} alt="Loading" style={{
+                height: '100%',
+                width: '100%',
+                objectFit: 'contain'
+              }}/>
               </span>
                 
             </div>
             <div className="product-item-context-container">
                   <span className="product-item-context-title">{data.name}</span>
                   <span className="product-item-context-categories">Categories: {data.type}</span>
+                  <span className="product-item-context-author">Author: {data.author}</span>
                   <span className="product-item-context-tags">Tags: {data.type}</span>
                   <span className="product-item-context-prices">Prices: USD ${data.price}</span>
                   <div className="product-item-context-instructions">Description: <br/>{data.description}</div>
@@ -110,12 +112,19 @@ function ProductItem() {
                     <button className="product-item-context-quantity-add-button" onClick={handleAddChange}>+</button>
                   </div>
 
-                  <AddToCartButton 
-                      productID={data.productID}
-                      name={data.name}
-                      price={data.price}
-                      quantity={quantity}
-                  />
+                  <AddToWishlist productID={ProductID}/>
+
+                  {data.stock > 0 ? (
+                    <AddToCartButton 
+                        productID={data.productID} 
+                        name={data.name} 
+                        price={data.price} 
+                        quantity={quantity} 
+                        imageURL={imageURL} 
+                    />
+                  ) : (
+                    <span>Out of Stock</span>
+                  )}
             </div>
           </div>
         </div>

@@ -1,0 +1,25 @@
+.add-to-wishlist-button {
+  background-color: black;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+
+  padding: 0.5rem 0.8rem;
+  border: none;
+  border-radius: 0.8rem;
+
+  cursor: pointer;
+}
+
+.add-to-wishlist-button .star-image {
+  color: white;
+  margin: 0 0.3rem;
+  font-size: 1.2rem;
+  transition: color 0.5s ease;
+}
+
+.add-to-wishlist-button .star-image.active {
+  color: rgb(238, 255, 0);
+  transition: color 0.5s ease;
+}

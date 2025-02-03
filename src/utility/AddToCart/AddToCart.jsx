@@ -6,7 +6,7 @@ import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 import './AddToCart.css'
 
-export function AddToCartButton({ productID, name, price, quantity }) {
+export function AddToCartButton({ productID, name, price, quantity, imageURL }) {
     const navigate = useNavigate();
     const [cookies] = useCookies(['user']);
     const username = cookies.user ? decryptData(cookies.user).username : undefined;
@@ -41,7 +41,8 @@ export function AddToCartButton({ productID, name, price, quantity }) {
                         productID: productID, 
                         name: name, 
                         price: price, 
-                        quantity: quantity 
+                        quantity: quantity,
+                        imageURL: imageURL
                     }
                 ]);
             }
@@ -79,4 +80,5 @@ AddToCartButton.propTypes = {
     name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     quantity: PropTypes.number.isRequired,
+    imageURL: PropTypes.string.isRequired
 };

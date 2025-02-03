@@ -45,7 +45,7 @@ function Header() {
            
          </div>
          <div className="upper-nav-bar-right">
-            <div className="welcome-message">Welcome, <b><u>{displayName}</u></b></div>
+            <div className="welcome-message"><b><u>{displayName}</u></b></div>
             {
                 username === "Guest"
                 ? 

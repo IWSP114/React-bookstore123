@@ -132,9 +132,17 @@
   margin-top: 10px;
 }
 
-.payment-container .payment-total .payment-total-price, .payment-total-amount, .payment-total-type {
+.payment-container .payment-total .payment-total-amount, .payment-total-type {
   font-size: 20px;
   color: rgba(0, 0, 0, 0.747);
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 8px;
+}
+
+.payment-container .payment-total .payment-total-price {
+  font-size: 20px;
+  color: rgb(221, 51, 51);
   display: flex;
   justify-content: space-between;
   margin: 5px 8px;
@@ -162,6 +170,42 @@
   font-size: 15px;
   margin: 15px 15px 5px 5px;
   color: black;
+}
+
+.payment-container .payment-context-container .shipping-option-container {
+  margin: 0.8rem 0;
+  padding: 0.5rem 1rem;
+  border-top: 1px dashed black;
+}
+
+.shipping-option-container .shipping-option-title {
+  color: red;
+  display: block;
+
+  font-size: 1rem;
+  font-weight: 600;
+
+  margin: 0.8rem 0;
+}
+
+.shipping-option-container .shipping-option-selector {
+  display: flex;
+  justify-content: space-around;
+}
+
+.shipping-option-container .shipping-option-selector .shipping-option {
+  border: 3px solid black;
+  color: black;
+  font-weight: 500;
+  border-radius: 0.4rem;
+  padding: 0.4rem 0.5rem;
+  cursor: pointer;
+}
+
+.shipping-option-container .shipping-option-selector .shipping-option.active {
+  border: 3px solid red;
+  color: red;
+  font-weight: 500;
 }
 
 .payment-container .pay-button-container {

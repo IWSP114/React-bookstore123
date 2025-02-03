@@ -6,7 +6,7 @@ import './Cart.css'
 import rubbishIcon from "../../assets/rubbish-bin-icon.png"
 import { decryptData } from '../../utility/crypto.js'
 import { useCookies } from 'react-cookie';
-import ImageLoader from "../../utility/ImageLoader/ImageLoader.jsx";
+//import ImageLoader from "../../utility/ImageLoader/ImageLoader.jsx";
 import ToTwoDecimal from "../../utility/ToTwoDecimal.js";
 import useAuthRedirect from "../../utility/checkLoginMiddleware.jsx";
 import axios from "axios";
@@ -18,6 +18,7 @@ function Cart() {
     const [cookies] = useCookies(['user']);
     const [errorMessage, setErrorMessage] = useState("");
     const [userID, setUserID] = useState("");
+    const [shippingPrice, setShippingPrice] = useState(0);
     //const [loading, setLoading] = useState(true); // State for loading status
     //const [error, setError] = useState(null); // State for error handling
     
@@ -34,7 +35,8 @@ function Cart() {
       const data = { 
         customerID: userID, 
         cart: cart , 
-        price: (Math.round(cart.reduce((acc, item)=> acc + (item.quantity * item.price), 0) * 100) / 100).toFixed(2), 
+        subtotal: ((Math.round(cart.reduce((acc, item)=> acc + (item.quantity * item.price), 0) * 100) / 100)).toFixed(2), 
+        shipping : shippingPrice.toFixed(2),
         total: cart.reduce((acc, item)=> acc + item.quantity, 0)
       };
 
@@ -93,11 +95,11 @@ function Cart() {
                   <div className="cart-item-container" key={cartItem.id}>
 
                     <div className="item-image-container">
-                      <ImageLoader
-                        ProductID={cartItem.productID}
-                        Width={100}
-                        Height={100}
-                      />
+                      <img src={cartItem.imageURL} alt="Loading" style={{
+                        height: '100%',
+                        width: '100%',
+                        objectFit: 'contain'
+                      }}/>
                     </div>
 
                     <div className="item-context-container">
@@ -133,10 +135,26 @@ function Cart() {
                       <span>${ToTwoDecimal(cartItem.price * cartItem.quantity)}</span>
                     </div>
                   )} 
+                    <div className="shipping-option-container">
+                    <span className="shipping-option-title">Shipping option</span>
+                    <div className="shipping-option-selector">
+                      <div className={`shipping-option ${shippingPrice === 0 ? 'active' : ''}`} onClick={() => setShippingPrice(0)}>FREE<br/>7 days</div>
+                      <div className={`shipping-option ${shippingPrice === 4.99 ? 'active' : ''}`} onClick={() => setShippingPrice(4.99)}>$4.99<br/>3 days</div>
+                      <div className={`shipping-option ${shippingPrice === 9.99 ? 'active' : ''}`} onClick={() => setShippingPrice(9.99)}>$9.99<br/>1 day</div>
+                    </div>
+                      
+                    </div>
+
                     <div className="payment-total">
                       <div className="payment-total-price">
                         <span>Total Price:</span>
-                        <span>${(Math.round(cart.reduce((acc, item)=> acc + (item.quantity * item.price), 0) * 100) / 100).toFixed(2)}</span>
+                        <span>
+                          ${(
+                            (Math.round(cart.reduce((acc, item)=> acc + (item.quantity * item.price), 0) * 100) / 100)
+                            + 
+                            shippingPrice
+                            ).toFixed(2)}
+                        </span>
                       </div>
                     
                       <div className="payment-total-amount">
@@ -148,10 +166,11 @@ function Cart() {
                         <span>Total Items:</span>
                         <span>{cart.length}</span>
                       </div>
+  
                     </div>
 
                     <div className="pay-button-container">
-                      <button className="pay-button" onClick={handlePlaceOrder}>Place Order</button>
+                      <button className="pay-button" onClick={handlePlaceOrder} disabled={cart.length < 1}>Place Order</button>
                     </div>
                     <span className="error-message">{errorMessage}</span>
                 </div>

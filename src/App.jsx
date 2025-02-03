@@ -1,6 +1,7 @@
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Suspense, lazy } from 'react'
+import { ErrorBoundary } from 'react-error-boundary';
 import Home from './Components/home/Home.jsx';
 const About = lazy(()=> import ('./Components/about/About.jsx'));
 const Services = lazy(()=> import ('./Components/services/Services.jsx'));
@@ -30,11 +31,11 @@ function App() {
             <CartObject>  
                 <Router>
                     <Header />
+                    <ErrorBoundary fallback={<div>Something went wrong!</div>}>
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/about" element={<Suspense fallback={<div>Loading...</div>}><About /></Suspense>} />
                         <Route path="/services" element={<Suspense fallback={<div>Loading...</div>}><Services /></Suspense>} />
-                        <Route path="/random" element={<Suspense fallback={<div>Loading...</div>}><RandomBook /></Suspense>} />
                         <Route path="/register" element={<Suspense fallback={<div>Loading...</div>}><Register /></Suspense>} />
                         <Route path="/login" element={<Suspense fallback={<div>Loading...</div>}><Login /></Suspense>} />
                         <Route path="/logout" element={<Logout />} />
@@ -46,10 +47,13 @@ function App() {
                         <Route path="/orders/:OrderID" element={<Suspense fallback={<div>Loading...</div>}><OrderItemPage /></Suspense>} />
                         <Route path="/account/edit-account" element={<Suspense fallback={<div>Loading...</div>}><ModifyProfilePage /></Suspense>} />
                         <Route path="/staff/create-products" element={<Suspense fallback={<div>Loading...</div>}><CreateProduct /></Suspense>} />
+                        <Route path="/random" element={<Suspense fallback={<div>Loading...</div>}><RandomBook /></Suspense>} />
                         <Route path="*" element={<Home />} />
                     </Routes>
                     <ScrollToTop smooth />
+                    </ErrorBoundary>
                     <Footer />
+                   
                 </Router>
             </CartObject>
         </ProductObject>
