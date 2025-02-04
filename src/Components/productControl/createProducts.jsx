@@ -1,6 +1,6 @@
 
 import UploadForm from './createProductForm';
-import useAuthRedirect from '../../utility/checkLoginMiddleware';
+import useAuthRedirect from '../../utility/useAuthRedirect';
 
 function CreateProduct() {
     const { loadingAuth } = useAuthRedirect();

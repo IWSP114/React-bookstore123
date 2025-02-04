@@ -37,6 +37,7 @@ function Product() {
         };
     
         fetchData(); 
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []); 
 
     if (loading) return <div>Loading...</div>; // Display loading state
@@ -58,7 +59,7 @@ function Product() {
                     <div className="product-tag-context-container">
                         <div className="product-tag-context"><span onClick={(e) => setQuery(e.target.innerText)}>Story Book</span></div>
                         <div className="product-tag-context"><span onClick={(e) => setQuery(e.target.innerText)}>Literature</span></div>
-                        <div className="product-tag-context"><span onClick={(e) => setQuery(e.target.innerText)}>History</span></div>
+                        <div className="product-tag-context"><span onClick={(e) => setQuery(e.target.innerText)}>Historical</span></div>
                         <div className="product-tag-context"><span onClick={(e) => setQuery(e.target.innerText)}>Finance</span></div>
                         <div className="product-tag-context"><span onClick={(e) => setQuery(e.target.innerText)}>Technological</span></div>
                     </div>
@@ -71,8 +72,6 @@ function Product() {
                     />
                 </div>
                 <div className="product-display-container">
-                    <div className="product-type-title-container">Wish list</div>
-                    {/* Your wish list */}
                     <div className="product-type-title-container">Products</div>
                     <div className="product-item-display-container">
                         {
@@ -90,7 +89,7 @@ function Product() {
                                                 </div>
 
                                                 <div className="product-item-context-container">
-                                                    <span className="product-item-context-type">Story Book</span>
+                                                    <span className="product-item-context-type">{productItem.type}</span>
                                                     <span className="product-item-context-title">{productItem.name} by {productItem.author}</span>
                                                     <span className="product-item-context-price">USD ${productItem.price}</span>
                                                 </div>

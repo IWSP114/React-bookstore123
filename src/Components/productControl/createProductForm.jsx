@@ -8,9 +8,11 @@ const UploadForm = () => {
     const [previewImgUrl, setPreviewImgUrl] = useState('');
 
     const [productName, setProductName] = useState("");
+    const [productAuthor, setProductAuthor] = useState("");
     const [description, setDescription] = useState("");
     const [producType, setProductType] = useState("");
     const [productPrice, setProductPrice] = useState(0);
+    const [productStock, setProductStock] = useState(0);
 
     const [errorMessage, setErrorMessage] = useState("");
 
@@ -29,9 +31,11 @@ const UploadForm = () => {
         const formData = new FormData();
         formData.append('image', selectedImage);
         formData.append('productName', productName);
+        formData.append('productAuthor', productAuthor);
         formData.append('description', description);
         formData.append('producType', producType);
         formData.append('productPrice', productPrice);
+        formData.append('productStock', productStock);
 
         try {
             const response = await axios.post('http://localhost:5000/create-product', formData, {
@@ -56,10 +60,13 @@ const UploadForm = () => {
                 setErrorMessage('An error occurred while making the request.');
             }
             // Clear input fields after an error
+        } finally {
+            setProductAuthor("");
             setProductName("");
             setDescription("");
             setProductType("");
-            setProductPrice("");
+            setProductPrice(0);
+            setProductStock(0);
         }
         
         console.log('Uploading:', selectedImage);
@@ -75,6 +82,11 @@ const UploadForm = () => {
               </div>
 
               <div className="form-group">
+                  <label htmlFor="product-author">Product Author:</label>
+                  <input type="text" id="product-author" name="product-author" onChange={(e) => setProductAuthor(e.target.value)} value={productAuthor} required/>
+              </div>
+
+              <div className="form-group">
                   <label htmlFor="description">Description:</label>
                   <textarea type="text" id="description" name="description" className="description" onChange={(e) => setDescription(e.target.value)} value={description} required/>
               </div>
@@ -87,6 +99,11 @@ const UploadForm = () => {
               <div className="form-group">
                   <label htmlFor="product-price">Price:</label>
                   <input type="number" id="product-price" name="product-price" min="0" max="1000" step="0.01" className="product-price" onChange={(e) => setProductPrice(e.target.value)} value={productPrice} required/>
+              </div>
+
+              <div className="form-group">
+                  <label htmlFor="product-stock">Stock:</label>
+                  <input type="number" id="product-stock" name="product-stock" min="0" max="1000" className="product-stock" onChange={(e) => setProductStock(e.target.value)} value={productStock} required/>
               </div>
 
               <div className="form-group">

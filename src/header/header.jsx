@@ -19,8 +19,8 @@ function Header() {
 
     useEffect(() => {
         //console.log(import.meta.env.VITE_API_URL)
-        const usernameCookie = cookies.user ? decryptData(cookies.user).username : 'Guest';
-        const displaynameCookie = cookies.user ? decryptData(cookies.user).display_name : 'Guest';
+        const usernameCookie = cookies.user ? decryptData(cookies.user).username : undefined;
+        const displaynameCookie = cookies.user ? decryptData(cookies.user).display_name : undefined;
         if (username !== usernameCookie) {
             setUsername(usernameCookie);
             setDisplayName(displaynameCookie);
@@ -47,7 +47,7 @@ function Header() {
          <div className="upper-nav-bar-right">
             <div className="welcome-message"><b><u>{displayName}</u></b></div>
             {
-                username === "Guest"
+                username === undefined
                 ? 
                 <>
                     <div className="login-option-container">

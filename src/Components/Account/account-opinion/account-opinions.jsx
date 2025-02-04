@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import useAuthRedirect from '../../../utility/checkLoginMiddleware';
+import useAuthRedirect from '../../../utility/useAuthRedirect.jsx';
 import './account-opinions.css'
 
 function AccountOpinion() {
@@ -15,6 +15,7 @@ function AccountOpinion() {
 
               <div className="account-opinions-opinion-container">
                 <Link to="/orders"><div className="account-opinions-opinion">Order</div></Link>
+                <Link to="/wish-list"><div className="account-opinions-opinion">Wish-List</div></Link>
                 <Link to="/account/edit-account"><div className="account-opinions-opinion">Modify profile</div></Link>
                 <Link to="/lost-password"><div className="account-opinions-opinion">Lost password</div></Link>
                 <Link to="/logout"><div className="account-opinions-opinion">Log Out</div></Link>

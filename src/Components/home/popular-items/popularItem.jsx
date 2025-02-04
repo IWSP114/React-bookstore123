@@ -50,7 +50,7 @@ function PopularItem() {
                   </div>
 
                   <div className="popular-item-name-container">
-                    <span>{product.name}</span>
+                    <span>{product.name} by {product.author}</span>
                   </div>
 
                   <div className="popular-item-price-container">

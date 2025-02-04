@@ -2,7 +2,7 @@ import { useCookies } from 'react-cookie';
 import { useEffect, useState } from "react"
 import { decryptData } from '../../../utility/crypto';
 import { Link } from 'react-router-dom';
-import useAuthRedirect from '../../../utility/checkLoginMiddleware';
+import useAuthRedirect from '../../../utility/useAuthRedirect.jsx';
 
 import './OrderPage.css'
 import AccountOpinion from '../account-opinion/account-opinions';

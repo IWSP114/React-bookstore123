@@ -14,7 +14,12 @@ function Logout() {
 
         removeCookie('user');
         const myInterval = setTimeout(()=>{
-            navigate('/');
+            if(!cookies.user) {
+               navigate('/'); 
+            } else {
+                removeCookie('user');
+                navigate('/'); 
+            }
         }, 1000);
         
         

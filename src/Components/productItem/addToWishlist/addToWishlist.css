@@ -5,11 +5,15 @@
   font-weight: 600;
   letter-spacing: 1px;
 
+  margin-left: 1.2rem;
   padding: 0.5rem 0.8rem;
   border: none;
   border-radius: 0.8rem;
 
   cursor: pointer;
+
+  display:flex;
+  align-items: center;
 }
 
 .add-to-wishlist-button .star-image {

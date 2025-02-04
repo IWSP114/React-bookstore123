@@ -1,0 +1,24 @@
+You can create new products. Here are some example data:
+1.
+name: The Hunger Games
+author: Suzanne Collins
+description: A dystopian novel about survival and rebellion in a totalitarian society.
+Product Type: Survival
+Price: 10.70
+Stock: Any
+
+2.
+name: The Nightingale
+author: Kristin Hannah
+description: A historical fiction novel about two sisters navigating life during World War II in France.
+Product Type: Historical
+Price: 11.99
+Stock: Any
+
+3.
+name: Pride & Prejudice
+author: Jane Austen
+description: A romantic novel that critiques the British landed gentry at the end of the 18th century.
+Product Type: Romance
+Price: 12.99
+Stock: Any

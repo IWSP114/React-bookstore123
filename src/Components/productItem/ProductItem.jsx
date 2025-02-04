@@ -105,14 +105,12 @@ function ProductItem() {
                   <span className="product-item-context-tags">Tags: {data.type}</span>
                   <span className="product-item-context-prices">Prices: USD ${data.price}</span>
                   <div className="product-item-context-instructions">Description: <br/>{data.description}</div>
-
+                  <AddToWishlist productID={ProductID}/>
                   <div className="product-item-context-quantity-container">
                     <button className="product-item-context-quantity-subtract-button" onClick={handleSubtractChange}>-</button>
                     <span className="product-item-context-quantity-display">{quantity}</span>
                     <button className="product-item-context-quantity-add-button" onClick={handleAddChange}>+</button>
                   </div>
-
-                  <AddToWishlist productID={ProductID}/>
 
                   {data.stock > 0 ? (
                     <AddToCartButton 
