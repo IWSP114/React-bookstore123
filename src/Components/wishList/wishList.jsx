@@ -4,7 +4,7 @@ import { useState, useEffect, memo, useMemo } from "react"
 import { useCookies } from 'react-cookie';
 import { decryptData } from '../../utility/crypto';
 import { Link } from 'react-router-dom';
-import useAuthRedirect from '../../utility/useAuthRedirect.jsx';
+import useAuthRedirect from '../../utility/useAuthRedirect';
 import axios from 'axios';
 
 function WishList() {

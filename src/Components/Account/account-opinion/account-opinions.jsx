@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import useAuthRedirect from '../../../utility/useAuthRedirect.jsx';
+import useAuthRedirect from '../../../utility/useAuthRedirect';
 import './account-opinions.css'
 
 function AccountOpinion() {

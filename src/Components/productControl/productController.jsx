@@ -4,8 +4,10 @@ import { useState, useEffect, memo } from "react"
 import { Link } from 'react-router-dom';
 //import ImageLoader from '../../utility/ImageLoader/ImageLoader';
 import axios from 'axios';
+import useAuthRedirect from '../../utility/useAuthRedirect';
 
 function ProductController() {
+    const { loadingAuth } = useAuthRedirect();
     const [data, setData] = useState([]); // State for storing fetched data
     const [loading, setLoading] = useState(true); // State for loading status
     const [error, setError] = useState(null); // State for error handling
@@ -66,6 +68,7 @@ function ProductController() {
       // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []); 
 
+    if (loadingAuth) return <div>Loading...</div>; // Display loading state
     if (loading) return <div>Loading...</div>; // Display loading state
     if (error) return <div>Error: {error}</div>; // Display error message
 
@@ -122,7 +125,7 @@ function ProductController() {
                                             </div>
                                         </Link>
                                         <div className="product-option-container">
-                                            <div className="product-option-revise">REVISE</div>
+                                            <div className="product-option-revise"><Link to={`/staff/products-edit/${productItem.productID}`}>REVISE</Link></div>
                                             <div className="product-option-delete" onClick={() => handleDeleteItem(productItem.productID)}>DELETE</div>
                                         </div>
                                     </div>

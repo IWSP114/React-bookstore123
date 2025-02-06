@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from "react"
 import { useParams } from 'react-router-dom';
-import useAuthRedirect from '../../../utility/useAuthRedirect.jsx';
+import useAuthRedirect from '../../../utility/useAuthRedirect';
 
 import './OrderItemPage.css'
 import AccountOpinion from '../account-opinion/account-opinions';

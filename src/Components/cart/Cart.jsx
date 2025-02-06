@@ -8,7 +8,7 @@ import { decryptData } from '../../utility/crypto.js'
 import { useCookies } from 'react-cookie';
 //import ImageLoader from "../../utility/ImageLoader/ImageLoader.jsx";
 import ToTwoDecimal from "../../utility/ToTwoDecimal.js";
-import useAuthRedirect from "../../utility/useAuthRedirect.jsx";
+import useAuthRedirect from "../../utility/useAuthRedirect";
 import axios from "axios";
 
 

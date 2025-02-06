@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import './createProductForm.css';
 import axios from 'axios';
+import useAuthRedirect from '../../utility/useAuthRedirect';
 
 const UploadForm = () => {
+    const { loadingAuth } = useAuthRedirect();
 
     const [selectedImage, setSelectedImage] = useState(null);
     const [previewImgUrl, setPreviewImgUrl] = useState('');
@@ -71,7 +73,7 @@ const UploadForm = () => {
         
         console.log('Uploading:', selectedImage);
     };
-
+    if (loadingAuth) return <div>Loading...</div>; // Display loading state
     return (
         <div className="create-product-form">
           <h2>Create a new product</h2>
