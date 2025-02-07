@@ -13,6 +13,7 @@ function Login() {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [selectedOption, setSelectedOption] = useState("users");
 
     const [showPassword, setShowPassword] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
@@ -31,15 +32,34 @@ function Login() {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const userData = { table: "users", username: username, password: password };
+        const userData = { table: selectedOption, username: username, password: password };
         try {
             const response = await axios.post('http://localhost:5000/login', userData);
 
             if(response.status === 200 && response.data.message === 'Success!') {
-                console.log(response.data.data[0]);
-                const encryptedData = encryptData(response.data.data[0]);
-                setCookie('user', encryptedData, { path: '/', maxAge: 3000 });
-                navigate('/'); // Navigate after successful login
+                if(selectedOption === 'users') {
+                    const newcookie = {
+                    id: response.data.data[0].id,
+                    identity: 'user',
+                    username: response.data.data[0].username,
+                    display_name: response.data.data[0].display_name,
+                    email: response.data.data[0].email
+                    }
+                    const encryptedData = encryptData(newcookie);
+                    setCookie('user', encryptedData, { path: '/', maxAge: 3000 });
+                    navigate('/'); // Navigate after successful login
+                } else if (selectedOption === 'staff') {
+                    const newcookie = {
+                        id: response.data.data[0].id,
+                        identity: 'staff',
+                        username: response.data.data[0].username,
+                        display_name: response.data.data[0].display_name,
+                    }
+                    const encryptedData = encryptData(newcookie);
+                    setCookie('user', encryptedData, { path: '/', maxAge: 3000 });
+                    navigate('/'); // Navigate after successful login
+                }
+                
             } 
         } catch (error) {
             // Suppress default error logging
@@ -64,6 +84,10 @@ function Login() {
         setShowPassword(showPassword ? false : true);
     }
 
+    const handleChange = (event) => {
+        setSelectedOption(event.target.value);
+    };
+
     return (
         <>
             <div className="login-container">
@@ -82,6 +106,28 @@ function Login() {
                         </button>
                         </div> 
                         <span className="error-message">{errorMessage}</span>
+                    </div> 
+                    <div className="form-group">
+                        <label>Identity:</label>
+                        <label>
+                            <input
+                                type="radio"
+                                value="users"
+                                checked={selectedOption === 'users'}
+                                onChange={handleChange}
+                                />
+                            User
+                        </label>
+
+                        <label>
+                            <input
+                                type="radio"
+                                value="staff"
+                                checked={selectedOption === 'staff'}
+                                onChange={handleChange}
+                                />
+                            Staff
+                        </label>
                     </div>
                     <div className="submit-group">
                         <input type="submit" value="Login"/>

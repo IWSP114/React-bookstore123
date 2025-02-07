@@ -4,8 +4,8 @@ import { CartContext } from "../../utility/CartLoader.jsx"
 import { useNavigate } from 'react-router-dom';
 import './Cart.css'
 import rubbishIcon from "../../assets/rubbish-bin-icon.png"
-import { decryptData } from '../../utility/crypto.js'
-import { useCookies } from 'react-cookie';
+//import { decryptData } from '../../utility/crypto.js'
+//import { useCookies } from 'react-cookie';
 //import ImageLoader from "../../utility/ImageLoader/ImageLoader.jsx";
 import ToTwoDecimal from "../../utility/ToTwoDecimal.js";
 import useAuthRedirect from "../../utility/useAuthRedirect";
@@ -15,20 +15,20 @@ import axios from "axios";
 function Cart() {
     const navigate = useNavigate();
     const { cart, setCart } = useContext(CartContext);
-    const [cookies] = useCookies(['user']);
+    //const [cookies] = useCookies(['user']);
     const [errorMessage, setErrorMessage] = useState("");
-    const [userID, setUserID] = useState("");
+    //const [userID, setUserID] = useState("");
     const [shippingPrice, setShippingPrice] = useState(0);
     //const [loading, setLoading] = useState(true); // State for loading status
     //const [error, setError] = useState(null); // State for error handling
     
-    const { loadingAuth } = useAuthRedirect();
+    const { identity, userID, loadingAuth } = useAuthRedirect();
 
     useEffect(() => {
-      const usernameID = cookies.user ? decryptData(cookies.user).id : 0;
-      setUserID(usernameID);
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+      if(identity === 'staff') {
+        navigate('/', { replace: true })
+      }
+    }, [identity, navigate]);
 
     async function handlePlaceOrder() {
 

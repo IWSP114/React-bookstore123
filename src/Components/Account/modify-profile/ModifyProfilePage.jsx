@@ -1,8 +1,9 @@
 import { useCookies } from 'react-cookie';
 import { useEffect, useRef, useState } from "react"
-import { encryptData, decryptData } from '../../../utility/crypto';
+import { encryptData } from '../../../utility/crypto';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import useAuthRedirect from "../../../utility/useAuthRedirect";
 
 import './ModifyProfilePage.css'
 import AccountOpinion from '../account-opinion/account-opinions';
@@ -10,9 +11,9 @@ import AccountOpinion from '../account-opinion/account-opinions';
 
 function ModifyProfilePage() {
   const navigate = useNavigate();
-  const [cookies, setCookie] = useCookies(['user']);
-  const usernameCookie = cookies.user ? decryptData(cookies.user).username : 'Guest';
-  const [username, setUsername] = useState(usernameCookie);
+  const [,setCookie] = useCookies(['user']);
+  //const usernameCookie = cookies.user ? decryptData(cookies.user).username : 'Guest';
+  //const [username, setUsername] = useState(usernameCookie);
   const messageRef = useRef();
 
   const [newUsername, setNewUsername] = useState("Username");
@@ -23,15 +24,7 @@ function ModifyProfilePage() {
   const [loading, setLoading] = useState(true); // State for loading status
   const [error, setError] = useState(null); // State for error handling
 
-  useEffect(() => {
-      const usernameCookie = cookies.user ? decryptData(cookies.user).username : 'Guest';
-      if(usernameCookie === 'Guest') {
-        navigate('/login');
-      }
-      setUsername(usernameCookie);
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cookies.user]);
+  const { username, userID, loadingAuth } = useAuthRedirect();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -85,7 +78,8 @@ function ModifyProfilePage() {
 
         if(response.status === 200 && response.data.message === 'User information has been updated') {
             const newcookie = {
-              id: decryptData(cookies.user).id,
+              id: userID,
+              identity: 'user',
               username: userData.username,
               display_name: userData.display_name,
               email: userData.email
@@ -115,7 +109,7 @@ function ModifyProfilePage() {
     }
     
   }
-
+  if(loadingAuth) return <div>Loading...</div>;
   if (loading) return <div>Loading...</div>; // Display loading state
   if (error) return <div>Error: {error}</div>; // Display error message
 

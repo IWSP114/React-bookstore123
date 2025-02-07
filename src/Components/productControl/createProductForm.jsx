@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './createProductForm.css';
 import axios from 'axios';
 import useAuthRedirect from '../../utility/useAuthRedirect';
 
 const UploadForm = () => {
-    const { loadingAuth } = useAuthRedirect();
+    const { identity, loadingAuth } = useAuthRedirect();
+    const navigate = useNavigate();
 
     const [selectedImage, setSelectedImage] = useState(null);
     const [previewImgUrl, setPreviewImgUrl] = useState('');
@@ -17,6 +19,12 @@ const UploadForm = () => {
     const [productStock, setProductStock] = useState(0);
 
     const [errorMessage, setErrorMessage] = useState("");
+
+    useEffect(()=> {
+        if(identity !== 'staff') {
+            return navigate('/', { replace: true });
+        }
+    }, [identity, navigate])
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];

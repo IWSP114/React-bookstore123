@@ -1,10 +1,19 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import useAuthRedirect from '../../../utility/useAuthRedirect';
+import { useNavigate } from 'react-router-dom';
 import './account-opinions.css'
 
 function AccountOpinion() {
   
-  const { username, loadingAuth } = useAuthRedirect();
+  const { identity, username, loadingAuth } = useAuthRedirect();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+        if(identity === 'staff') {
+          navigate('/', { replace: true })
+        }
+      }, [identity, navigate]);
 
   if (loadingAuth) return <div>Loading...</div>; // Display loading state
   return (

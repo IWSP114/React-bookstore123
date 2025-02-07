@@ -84,7 +84,7 @@ function Register() {
         <>
             <div className="register-container">
                 <h2>Register</h2>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={(e) => handleSubmit(e)}>
                 <div className="form-group">
                         <label htmlFor="email">Email Address:</label>
                         <input type="text" id="email" name="email" onChange={(e) => setEmail(e.target.value)} required/>

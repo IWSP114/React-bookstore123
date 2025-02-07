@@ -1,13 +1,14 @@
 
 import './productController.css';
 import { useState, useEffect, memo } from "react"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 //import ImageLoader from '../../utility/ImageLoader/ImageLoader';
 import axios from 'axios';
 import useAuthRedirect from '../../utility/useAuthRedirect';
 
 function ProductController() {
-    const { loadingAuth } = useAuthRedirect();
+    const navigate = useNavigate();
+    const { identity, loadingAuth } = useAuthRedirect();
     const [data, setData] = useState([]); // State for storing fetched data
     const [loading, setLoading] = useState(true); // State for loading status
     const [error, setError] = useState(null); // State for error handling
@@ -41,6 +42,9 @@ function ProductController() {
     }
 
     useEffect(() => {
+        if(identity !== 'staff') {
+            return navigate('/', { replace: true });
+        }
         const cacheKey = 'products'; // Define a unique key for caching
 
         if (cache[cacheKey]) {

@@ -1,6 +1,6 @@
-import { useCookies } from 'react-cookie';
+//import { useCookies } from 'react-cookie';
 import { useEffect, useState } from "react"
-import { decryptData } from '../../../utility/crypto';
+//import { decryptData } from '../../../utility/crypto';
 import { Link } from 'react-router-dom';
 import useAuthRedirect from '../../../utility/useAuthRedirect';
 
@@ -10,32 +10,35 @@ import axios from 'axios';
 
 
 function OrderPage() {
-  const [cookies] = useCookies(['user']);
+  //const [cookies] = useCookies(['user']);
 
   const [data, setData] = useState([]); // State for storing fetched data
   const [loading, setLoading] = useState(true); // State for loading status
   const [error, setError] = useState(null); // State for error handling
 
-  const { loadingAuth } = useAuthRedirect();
+  const { userID, loadingAuth } = useAuthRedirect();
+  console.log(userID);
 
   useEffect(() => {
-    const fetchData = async () => {
+    if(!loadingAuth) {
+      const fetchData = async () => {
         try {
-            const usernameID = cookies.user ? decryptData(cookies.user).id : 0;
-            const response = await axios.get(`http://localhost:5000/getOrder/${usernameID}`); // Replace with your API endpoint
+            //const usernameID = cookies.user ? decryptData(cookies.user).id : 0;
+            console.log(userID);
+            const response = await axios.get(`http://localhost:5000/getOrder/${userID}`); // Replace with your API endpoint
             setData(response.data.data); // Update state with fetched data
             console.log(response.data.data);
-            console.log(usernameID);
+            //console.log(usernameID);
         } catch (error) {
             setError(error.message); 
         } finally {
             setLoading(false); 
         }
     };
-
     fetchData(); 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); 
+    }
+
+  }, [loadingAuth, userID]); 
   
   if (loadingAuth) return <div>Loading...</div>; // Display loading state
   if (loading) return <div>Loading...</div>; // Display loading state

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { decryptData } from './crypto';
 
-const useAuthRedirect = () => {
+const useIdentityCheck = () => {
     const navigate = useNavigate();
     const [cookies] = useCookies(['user']);
     const [identity, setIdentity] = useState(undefined);
@@ -19,17 +19,12 @@ const useAuthRedirect = () => {
                 const displaynameCookie = cookies.user ? decryptData(cookies.user).display_name : undefined;
                 const userIDCookie = cookies.user ? decryptData(cookies.user).id : undefined;
                 const userIdentityCookie = cookies.user ? decryptData(cookies.user).identity : undefined;
-                if (usernameCookie === undefined) {
-                    navigate('/login', { replace: true });
-                } else {
-                    setUsername(usernameCookie);
-                    setDisplayName(displaynameCookie);
-                    setUserID(userIDCookie);
-                    setIdentity(userIdentityCookie);
-                }
+                setUsername(usernameCookie);
+                setDisplayName(displaynameCookie);
+                setUserID(userIDCookie);
+                setIdentity(userIdentityCookie);
             } catch (error) {
                 console.error('Error decrypting cookie:', error);
-                navigate('/login', { replace: true });
             } finally {
                 setLoading(false); // Set loading to false after check
             }
@@ -41,4 +36,4 @@ const useAuthRedirect = () => {
     return { identity, username, displayName, userID, loadingAuth }; // Return loading state if needed
 };
 
-export default useAuthRedirect;
+export default useIdentityCheck;

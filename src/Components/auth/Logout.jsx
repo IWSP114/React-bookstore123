@@ -10,7 +10,6 @@ function Logout() {
     const [cookies, , removeCookie] = useCookies(['user']);
 
     useEffect(()=>{
-        if(!cookies.user) navigate('/');
 
         removeCookie('user');
         const myInterval = setTimeout(()=>{
@@ -27,8 +26,8 @@ function Logout() {
         return () => {
             clearTimeout(myInterval);
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[]);
+
+    },[cookies.user, navigate, removeCookie]);
 
     return (
         <>

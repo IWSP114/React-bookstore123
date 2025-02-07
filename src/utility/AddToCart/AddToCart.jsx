@@ -9,7 +9,8 @@ import './AddToCart.css'
 export function AddToCartButton({ productID, name, price, quantity, imageURL }) {
     const navigate = useNavigate();
     const [cookies] = useCookies(['user']);
-    const username = cookies.user ? decryptData(cookies.user).username : undefined;
+    //const username = cookies.user ? decryptData(cookies.user).username : undefined;
+    const userIdentityCookie = cookies.user ? decryptData(cookies.user).identity : undefined;
     const { cart, setCart } = useContext(CartContext);
 
     const [message, setMessage] = useState("");
@@ -18,7 +19,7 @@ export function AddToCartButton({ productID, name, price, quantity, imageURL }) 
     // Function to add item to cart
     const handleAddToCart = () => {
 
-        if(username !== undefined) {
+        if(userIdentityCookie === 'user') {
             // Check if the item already exists in the cart
             const existingItem = cart.find(item => item.productID === productID);
         

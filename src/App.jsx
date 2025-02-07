@@ -7,7 +7,7 @@ const About = lazy(()=> import ('./Components/about/About.jsx'));
 const Services = lazy(()=> import ('./Components/services/Services.jsx'));
 const Register = lazy(()=> import ('./Components/auth/Register'));
 const Login = lazy(()=> import ('./Components/auth/Login'));
-import Logout from './Components/auth/Logout';
+const Logout = lazy(() => import ('./Components/auth/Logout'));
 import Cart from './Components/cart/Cart.jsx';
 import Product from './Components/product/Product.jsx';
 const ProductItemPage = lazy(()=> import ('./Components/productItem/ProductItemPage'));
@@ -41,7 +41,7 @@ function App() {
                         <Route path="/services" element={<Suspense fallback={<div>Loading...</div>}><Services /></Suspense>} />
                         <Route path="/register" element={<Suspense fallback={<div>Loading...</div>}><Register /></Suspense>} />
                         <Route path="/login" element={<Suspense fallback={<div>Loading...</div>}><Login /></Suspense>} />
-                        <Route path="/logout" element={<Logout />} />
+                        <Route path="/logout" element={<Suspense fallback={<div>Loading...</div>}><Logout /></Suspense>} />
                         <Route path="/lost-password" element={<Suspense fallback={<div>Loading...</div>}><LostPssword /></Suspense>} />
                         <Route path="/cart" element={<Cart />} />
                         <Route path="/product" element={<Product />} />

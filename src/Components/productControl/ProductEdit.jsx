@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 //import ImageLoader from "../../utility/ImageLoader/ImageLoader";
 import './ProductEdit.css'
@@ -8,7 +9,8 @@ import axios from "axios";
 function ProductEdit() {
 
       let { ProductID } = useParams();
-      const { loadingAuth } = useAuthRedirect();
+      const navigate = useNavigate();
+      const { identity, loadingAuth } = useAuthRedirect();
       const [productID, setProductID] = useState("");
       const [Message, setMessage] = useState("");
       
@@ -24,7 +26,10 @@ function ProductEdit() {
       const [error, setError] = useState(null); // State for error handling
 
       useEffect(() => {
-        const fetchData = async () => {
+        if(identity !== 'staff') {
+          navigate('/', { replace: true })
+        } else {
+          const fetchData = async () => {
             try {
                 const response = await axios.get(`http://localhost:5000/getProduct/${ProductID}`); // Replace with your API endpoint
                 console.log(response.data.Products[0]);
@@ -40,9 +45,11 @@ function ProductEdit() {
             } finally {
                 setLoading(false); 
             }
-        };
-    
-        fetchData(); 
+          };
+          fetchData(); 
+        }
+        
+        
       // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []); 
 

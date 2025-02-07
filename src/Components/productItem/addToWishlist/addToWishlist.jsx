@@ -14,6 +14,10 @@ function AddToWishlist({ productID }) {
     return cookies.user ? decryptData(cookies.user).id : undefined;
   }, [cookies.user]);
 
+  const userIdentityCookie = useMemo(() => {
+    return cookies.user ? decryptData(cookies.user).identity : undefined;
+  }, [cookies.user]);
+
   const [starActive, setStarActive] = useState(false);
   const [error, setError] = useState(null); // State for error handling
 
@@ -37,9 +41,11 @@ function AddToWishlist({ productID }) {
 
 
   async function handleOnClick(event) {
-    
+    if(userIdentityCookie === 'staff') {
+      navigate('/main', { replace: true });
+    }
 
-    if(userIDCookie !== undefined && starActive === false) {
+    if(userIDCookie !== undefined && starActive === false && userIdentityCookie !== 'staff') {
       console.log(userIDCookie);
       console.log(productID);
       // add to list with productID and userID
@@ -67,7 +73,7 @@ function AddToWishlist({ productID }) {
             }
         }
 
-    } else if (userIDCookie !== undefined && starActive === true) {
+    } else if (userIDCookie !== undefined && starActive === true && userIdentityCookie !== 'staff') {
       console.log("Delete");
       console.log(userIDCookie);
       console.log(productID);
