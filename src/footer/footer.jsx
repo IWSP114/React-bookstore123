@@ -21,8 +21,8 @@ function Footer () {
           <span className='footer-left-side-context'>Privacy Policy</span>
         </Link>
 
-        <Link to="/">
-          <span className='footer-left-side-context'>Delivery Service Details</span>
+        <Link to="/feedback">
+          <span className='footer-left-side-context'>Feedback</span>
         </Link>
         <Link to="/">
           <span className='footer-left-side-context'>Store Address</span>

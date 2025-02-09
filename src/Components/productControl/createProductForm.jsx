@@ -21,10 +21,10 @@ const UploadForm = () => {
     const [errorMessage, setErrorMessage] = useState("");
 
     useEffect(()=> {
-        if(identity !== 'staff') {
+        if(identity !== 'staff' && !loadingAuth) {
             return navigate('/', { replace: true });
         }
-    }, [identity, navigate])
+    }, [identity, loadingAuth, navigate])
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
@@ -123,7 +123,7 @@ const UploadForm = () => {
                     onChange={handleFileChange} 
                 />
                 <button type="submit" className="image-button" disabled={!selectedImage}>
-                    Upload Image
+                    Upload Product
                 </button>
               </div>
               <span className="error-message">{errorMessage}</span>

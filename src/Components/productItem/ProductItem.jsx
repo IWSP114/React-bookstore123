@@ -24,6 +24,7 @@ function ProductItem() {
                 const response = await axios.get(`http://localhost:5000/getProduct/${ProductID}`); // Replace with your API endpoint
                 setData(response.data.Products[0]); // Update state with fetched data
                 setImageURL(response.data.Products[0].imageUrl);
+                console.log(response.data.Products[0]);
             } catch (error) {
                 setError(error.message); 
             } finally {
@@ -42,10 +43,10 @@ function ProductItem() {
     }, [quantity]);
 
     const handleAddChange = useCallback(() => {
-        if(quantity < 99) {
+        if(quantity <= data.stock-1) {
             setQuantity(q => q + 1);
         }
-    }, [quantity]);
+    }, [data.stock, quantity]);
       
       function closeModal() {
         dialogRef.current?.close();
@@ -100,7 +101,7 @@ function ProductItem() {
             </div>
             <div className="product-item-context-container">
                   <span className="product-item-context-title">{data.name}</span>
-                  <span className="product-item-context-categories">Categories: {data.type}</span>
+                  <span className="product-item-context-categories">Stock remained: {data.stock}</span>
                   <span className="product-item-context-author">Author: {data.author}</span>
                   <span className="product-item-context-tags">Tags: {data.type}</span>
                   <span className="product-item-context-prices">Prices: USD ${data.price}</span>

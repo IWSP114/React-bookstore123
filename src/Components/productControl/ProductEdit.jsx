@@ -26,7 +26,7 @@ function ProductEdit() {
       const [error, setError] = useState(null); // State for error handling
 
       useEffect(() => {
-        if(identity !== 'staff') {
+        if(identity !== 'staff' && !loadingAuth) {
           navigate('/', { replace: true })
         } else {
           const fetchData = async () => {

@@ -1,0 +1,64 @@
+.feedback-container {
+  background-color: hsl(155, 21%, 84%);
+  padding: 25px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  width: 500px;
+  animation-name: opening;
+  animation-duration: 2s;
+  margin: 100px auto; 
+}
+h2 {
+  text-align: center;
+}
+.form-group {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.form-group .error-message {
+  color: red;
+  padding: 0.5rem 0;
+  display: block;
+}
+
+.submit-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+label {
+  display: block;
+  margin-bottom: 8px;
+}
+textarea {
+  width: 85%;
+  padding: 10px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  resize: vertical;
+}
+input[type="submit"] {
+  width: 60%;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+input[type="submit"]:hover {
+  background-color: #218838;
+}
+
+.form-group .feedback-length {
+  font-size: 0.7rem;
+  position: absolute;
+  bottom: 0.8rem;
+  right: 4rem;
+}
+
+.submit-group .message {
+  display: block;
+} 

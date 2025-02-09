@@ -42,7 +42,7 @@ function ProductController() {
     }
 
     useEffect(() => {
-        if(identity !== 'staff') {
+        if(identity !== 'staff' && !loadingAuth) {
             return navigate('/', { replace: true });
         }
         const cacheKey = 'products'; // Define a unique key for caching

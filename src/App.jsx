@@ -20,6 +20,8 @@ const CreateProduct = lazy (() => import ('./Components/productControl/createPro
 const WishList = lazy (() => import ('./Components/wishList/wishList.jsx'));
 const ProductController = lazy (() => import ('./Components/productControl/productController.jsx'))
 const ProductEdit = lazy(() => import ('./Components/productControl/productEdit.jsx'))
+const OrderControl = lazy (() => import ('./Components/orderControl/OrderControl.jsx'))
+import Feedback from './Components/feedback/feedback.jsx';
 import { CartObject } from './utility/CartObject.jsx';
 import { ProductObject } from './utility/ProductsObject.jsx';
 import Header from './header/header.jsx';
@@ -52,8 +54,12 @@ function App() {
                         <Route path="/staff/create-products" element={<Suspense fallback={<div>Loading...</div>}><CreateProduct /></Suspense>} />
                         <Route path="/staff/products-controll" element={<Suspense fallback={<div>Loading...</div>}><ProductController /></Suspense>} />
                         <Route path="/staff/products-edit/:ProductID" element={<Suspense fallback={<div>Loading...</div>}><ProductEdit /></Suspense>} />
+                        <Route path="/staff/order-control" element={<Suspense fallback={<div>Loading...</div>}><OrderControl /></Suspense>} />
                         <Route path="/random" element={<Suspense fallback={<div>Loading...</div>}><RandomBook /></Suspense>} />
                         <Route path="/wish-list" element={<Suspense fallback={<div>Loading...</div>}><WishList /></Suspense>} />
+                        <Route path="/feedback" element={<Feedback />} />
+
+
                         <Route path="*" element={<Home />} />
                     </Routes>
                     <ScrollToTop smooth />

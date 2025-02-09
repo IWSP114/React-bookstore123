@@ -12,7 +12,6 @@ import newLogo from '../assets/new-icon.png';
 import randomLogo from '../assets/random-icon.png';
 import cartLogo from '../assets/shopping-cart-icon.png'
 import listLogo from '../assets/order-list-icon.png'
-import addLogo from '../assets/add-icon.png'
 
 function Header() {
     //const [cookies] = useCookies(['user']);
@@ -97,17 +96,9 @@ function Header() {
                     identity === 'staff'
                     ?
                     <>
-
-                        <div className="option-space">&nbsp;</div>
-                            <div className="login-option-container">
-                            <Link to="/staff/create-products" className="nav-link">
-                                <img src={addLogo} className="icon-image" />
-                            </Link>
-                        </div>
-
                         <div className="option-space">&nbsp;</div>
                         <div className="login-option-container">
-                            <Link to="/staff/products-controll" className="nav-link">
+                            <Link to="staff/order-control" className="nav-link">
                                 <img src={listLogo} className="icon-image" />
                             </Link>
                         </div>

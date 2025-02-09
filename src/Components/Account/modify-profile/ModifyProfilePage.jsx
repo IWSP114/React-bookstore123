@@ -27,7 +27,8 @@ function ModifyProfilePage() {
   const { username, userID, loadingAuth } = useAuthRedirect();
 
   useEffect(() => {
-    const fetchData = async () => {
+    if(!loadingAuth) {
+      const fetchData = async () => {
         try {
             const response = await axios.get(`http://localhost:5000/getUser/${username}`); // Replace with your API endpoint
             setNewUsername(response.data.userdata[0].username);
@@ -42,8 +43,9 @@ function ModifyProfilePage() {
     };
 
     fetchData(); // Call the fetch function
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Empty dependency array means this effect runs once on mount
+    }
+    
+  }, [loadingAuth, username]); // Empty dependency array means this effect runs once on mount
 
   function handleUsernameChange(event) {
     setNewUsername(event.target.value);

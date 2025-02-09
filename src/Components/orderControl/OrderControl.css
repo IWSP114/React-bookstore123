@@ -1,0 +1,93 @@
+.order-body-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.order-body-container .order-page-title {
+  background-color: rgba(231, 231, 231, 0.781);
+  color: rgba(49, 49, 49, 0.747);
+
+  font-size: 2rem;
+  font-weight: 600;
+  padding: 0.8rem;
+}
+
+.order-body-container .order-page-context {
+  display: flex;
+  flex-direction: row;
+}
+
+/* Order List */
+.order-page-context .order-control {
+  flex: 1;
+  margin-left: 1rem;
+}
+
+.order-control .order-control-title-container {
+  padding-top: 1.8rem;
+  padding-left: 1.2rem;
+  padding-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  border-bottom: 3px solid rgba(121, 121, 121, 0.452);
+
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: rgb(87, 87, 87);
+}
+
+.order-control .order-control-title-container .order-control-title-order, 
+.order-item-container .order-control-item-order 
+{
+  width: 20%;
+}
+
+.order-item-container .order-control-item-order a {
+  color: rgb(87, 87, 87);
+  font-weight: 600;
+}
+
+.order-control .order-control-title-container .order-control-title-date, 
+.order-control .order-control-title-container .order-control-title-status, 
+.order-item-container .order-control-item-date
+{
+  width: 15%;
+}
+
+.order-item-container .order-control-item-status-container {
+  width: 15%;
+}
+
+.order-item-container .order-control-item-status-container .order-control-item-status {
+  width: 70%;
+}
+
+.order-control .order-control-title-container .order-control-title-total,
+.order-item-container .order-control-item-total
+{
+  width: 25%;
+}
+
+.order-control .order-control-title-container .order-control-title-actions,
+.order-item-container .order-control-item-actions
+ {
+  width: 20%;
+}
+
+.order-control .order-control-context-container {
+  display: flex;
+  flex-direction: column;
+
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgb(87, 87, 87);
+}
+
+.order-control .order-control-context-container .order-item-container {
+  padding: 1.2rem 0;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 3px solid rgba(121, 121, 121, 0.452);
+  align-items: center;
+}
