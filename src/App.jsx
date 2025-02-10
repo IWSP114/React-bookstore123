@@ -22,6 +22,8 @@ const ProductController = lazy (() => import ('./Components/productControl/produ
 const ProductEdit = lazy(() => import ('./Components/productControl/productEdit.jsx'))
 const OrderControl = lazy (() => import ('./Components/orderControl/OrderControl.jsx'))
 import Feedback from './Components/feedback/feedback.jsx';
+const FeedbackControl = lazy(() => import ('./Components/feedback/feedback-staff/FeedbackControl.jsx'));
+const FeedbackDetail = lazy(() => import ('./Components/feedback/feedback-staff/FeedbackDetail.jsx'));
 import { CartObject } from './utility/CartObject.jsx';
 import { ProductObject } from './utility/ProductsObject.jsx';
 import Header from './header/header.jsx';
@@ -58,6 +60,8 @@ function App() {
                         <Route path="/random" element={<Suspense fallback={<div>Loading...</div>}><RandomBook /></Suspense>} />
                         <Route path="/wish-list" element={<Suspense fallback={<div>Loading...</div>}><WishList /></Suspense>} />
                         <Route path="/feedback" element={<Feedback />} />
+                        <Route path="/staff/feedbacks-control" element={<Suspense fallback={<div>Loading...</div>}><FeedbackControl /></Suspense>} />
+                        <Route path="/staff/feedbacks-control/:FeedbackID" element={<Suspense fallback={<div>Loading...</div>}><FeedbackDetail /></Suspense>} />
 
 
                         <Route path="*" element={<Home />} />

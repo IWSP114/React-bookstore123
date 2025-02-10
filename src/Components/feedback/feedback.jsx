@@ -41,9 +41,16 @@ function Feedback() {
     };
 
     const handleFeedbackChange = (event) => {
-      setFeedback(event.target.value);
-      setFeedbackLength(event.target.value.length);
-      console.log(event.target.value.length);
+        let slicedString;
+        if(feedbackLength <= 5000) {
+           setFeedback(event.target.value);
+           setFeedbackLength(event.target.value.length); 
+        } else {
+            slicedString = (event.target.value).slice(0, 5000);
+            setFeedback(slicedString);
+            setFeedbackLength(slicedString.length); 
+        }
+      
     }
 
     if(loadingAuth) return <div>Loading...</div>;

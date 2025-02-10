@@ -1,0 +1,53 @@
+.feedback-detail-body-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.feedback-detail-body-container .feedback-detail-page-title {
+  background-color: rgba(231, 231, 231, 0.781);
+  color: rgba(49, 49, 49, 0.747);
+
+  font-size: 2rem;
+  font-weight: 600;
+  padding: 0.8rem;
+}
+
+.feedback-detail-body-container .feedback-detail-page-context {
+  display: flex;
+  flex-direction: row;
+}
+
+/* feedback-detail List */
+.feedback-detail-page-context .feedback-detail-control {
+  flex: 1;
+  margin-left: 1rem;
+  overflow-wrap: break-word;
+}
+
+.feedback-detail-control .feedback-detail-control-title-container {
+  margin: 1rem;
+  padding: 1.2rem;
+  width: 80%;
+
+  border: 3px solid rgba(121, 121, 121, 0.452);
+  background-color: lightblue;
+
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: rgb(87, 87, 87);
+}
+
+.feedback-detail-control .feedback-detail-control-title-container .feedback-detail-context-container {
+  width: 100%; /* Ensure it takes up the full width of its parent */
+  overflow-wrap: break-word; /* Break long words if needed */
+  word-wrap: break-word; /* For older browsers */
+  white-space: normal; /* Allow normal word wrapping */
+  word-break: break-word; /* additional break for CJK scripts */
+  inline-size: auto; /* adjust width to content */
+}
+
+.feedback-detail-control .feedback-detail-control-title-container .feedback-detail-userID-container {
+  margin-top: 5rem;
+  display: block;
+}

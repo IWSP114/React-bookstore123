@@ -18,6 +18,7 @@ function AccountOpinion() {
                 <Link to="/staff/create-products"><div className="account-opinions-opinion">Create</div></Link>
                 <Link to="/staff/products-controll"><div className="account-opinions-opinion">Products</div></Link>
                 <Link to="/staff/order-control"><div className="account-opinions-opinion">Orders</div></Link>
+                <Link to="/staff/feedbacks-control"><div className="account-opinions-opinion">Feedbacks</div></Link>
                 <Link to="/logout"><div className="account-opinions-opinion">Log Out</div></Link>
               </div>
     </div>
