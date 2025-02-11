@@ -20,7 +20,7 @@ function OrderItemPage() {
   useEffect(() => {
     const fetchData = async () => {
         try {
-            const response = await axios.get(`http://localhost:5000/getSingleOrder/${OrderID}`); // Replace with your API endpoint
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}getSingleOrder/${OrderID}`); 
             setData(response.data); // Update state with fetched data\
             console.log(data[0]);
         } catch (error) {

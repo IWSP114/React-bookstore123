@@ -22,7 +22,7 @@ function FeedbackDetail() {
       const fetchData = async () => {
         try {
             //console.log(userID);
-            const response = await axios.get(`http://localhost:5000/api/get-feedback/${FeedbackID}`); // Replace with your API endpoint
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}api/get-feedback/${FeedbackID}`);
             setData(response.data.data[0]); // Update state with fetched data
             console.log(response.data.data[0]);
         } catch (error) {

@@ -24,7 +24,7 @@ function AddToWishlist({ productID }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-          const response = await axios.get(`http://localhost:5000/api/get-wish-list-by-productID/${productID}/${userIDCookie}`); // Replace with your API endpoint
+          const response = await axios.get(`${import.meta.env.VITE_API_URL}api/get-wish-list-by-productID/${productID}/${userIDCookie}`);
           if((response.data.result) !== undefined) {
             setStarActive(true); 
           }
@@ -54,7 +54,7 @@ function AddToWishlist({ productID }) {
 
         const userData = { userID: userIDCookie, productID: productID };
         try {
-            const response = await axios.post(`http://localhost:5000/api/add-to-wishlist`, userData);
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}api/add-to-wishlist`, userData);
 
             if(response.status === 200 && response.data.message === 'Success!') {
               setStarActive(s => !s);
@@ -83,7 +83,7 @@ function AddToWishlist({ productID }) {
 
         const userData = { userID: userIDCookie, productID: productID };
         try {
-            const response = await axios.delete(`http://localhost:5000/api/delete-from-wishlist`, {
+            const response = await axios.delete(`${import.meta.env.VITE_API_URL}api/delete-from-wishlist`, {
               data: userData // Correctly send the data here
           });
 

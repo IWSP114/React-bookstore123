@@ -32,7 +32,7 @@ function WishList() {
         
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/get-all-wish-list/${userIDCookie}`); // Replace with your API endpoint
+                const response = await axios.get(`${import.meta.env.VITE_API_URL}api/get-all-wish-list/${userIDCookie}`); 
                 setData(response.data.products); // Update state with fetched data
                 console.log(response.data.products);
                 cache[cacheKey] = response.data.products;

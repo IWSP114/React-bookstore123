@@ -18,7 +18,7 @@ function Logout() {
                 navigate('/'); 
             } else {
                 removeCookie('user');
-                navigate('/'); 
+                navigate('/logout'); 
             }
         }, 1000);
         
@@ -30,11 +30,14 @@ function Logout() {
 
     return (
         <>
+        <div className="logout-background-container">
             <div className="background-container">
                 <div className="text-container">
-                    <h2>You will be log out for 1 seconds later</h2>
+                    <h2>You will be logged out for any second</h2>
                 </div>
             </div>
+        </div>
+            
             
         </>
     );

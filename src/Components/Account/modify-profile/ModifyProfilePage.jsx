@@ -30,7 +30,7 @@ function ModifyProfilePage() {
     if(!loadingAuth) {
       const fetchData = async () => {
         try {
-            const response = await axios.get(`http://localhost:5000/getUser/${username}`); // Replace with your API endpoint
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}getUser/${username}`); 
             setNewUsername(response.data.userdata[0].username);
             setNewDisplayName(response.data.userdata[0].display_name);
             setNewEmail(response.data.userdata[0].email);
@@ -76,7 +76,7 @@ function ModifyProfilePage() {
       //submit to backend
       const userData = { username: newUsername, email: newEmail, display_name: newDisplayName };
       try {
-        const response = await axios.patch(`http://localhost:5000/updateUser/${username}`, userData);
+        const response = await axios.patch(`${import.meta.env.VITE_API_URL}updateUser/${username}`, userData);
 
         if(response.status === 200 && response.data.message === 'User information has been updated') {
             const newcookie = {

@@ -18,7 +18,7 @@ function ProductController() {
     async function handleDeleteItem (productID) {
         const productData = { productID: productID };
         try {
-            const response = await axios.delete(`http://localhost:5000/api/delete-from-products`, {
+            const response = await axios.delete(`${import.meta.env.VITE_API_URL}api/delete-from-products`, {
               data: productData // Correctly send the data here
           });
 
@@ -56,7 +56,7 @@ function ProductController() {
         
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/getProduct`); // Replace with your API endpoint
+                const response = await axios.get(`${import.meta.env.VITE_API_URL}getProduct`); 
                 setData(response.data.Products); // Update state with fetched data
                 console.log(response.data.Products);
                 cache[cacheKey] = response.data.Products;

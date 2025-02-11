@@ -25,7 +25,7 @@ function OrderPage() {
         try {
             //const usernameID = cookies.user ? decryptData(cookies.user).id : 0;
             console.log(userID);
-            const response = await axios.get(`http://localhost:5000/getOrder/${userID}`); // Replace with your API endpoint
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}getOrder/${userID}`);
             setData(response.data.data); // Update state with fetched data
             console.log(response.data.data);
             //console.log(usernameID);

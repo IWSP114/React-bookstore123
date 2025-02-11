@@ -37,21 +37,48 @@
   color: rgb(87, 87, 87);
 }
 
+.feedback-controller-control .feedback-controller-control-context-container .feedback-controller-item-container {
+  max-width: 70vw;
+  padding: 1.2rem 1rem;
+  display: flex;
+  flex-direction: row;
+  border: 3px solid rgba(121, 121, 121, 0.452);
+  align-items: center;
+}
+
 .feedback-controller-control .feedback-controller-control-title-container .feedback-controller-control-title-userID, 
 .feedback-controller-item-container .feedback-controller-control-item-userID
 {
-  width: 20%;
+  min-width: 5rem;
   color: rgb(87, 87, 87);
   font-weight: 600;
 }
 
 .feedback-controller-control .feedback-controller-control-title-container .feedback-controller-control-title-feedback, 
+.feedback-controller-item-container .feedback-controller-control-item-feedback
+{
+  flex: 1;
+  max-width: 70%;
+  overflow: hidden;
+}
+
 .feedback-controller-control .feedback-controller-control-title-container .feedback-controller-control-title-action, 
-.feedback-controller-item-container .feedback-controller-control-item-feedback,
 .feedback-controller-item-container .feedback-controller-control-item-action
 {
-  width: 20rem;
-  max-width: 40%;
+  min-width: 10rem;
+}
+
+.feedback-controller-item-container .feedback-controller-control-item-action 
+{
+  background-color: rgb(255, 114, 114);
+  border-radius: 1rem;
+  padding: 0.4rem 0.8rem;
+}
+
+.feedback-controller-item-container .feedback-controller-control-item-action:hover
+{
+  background-color: rgb(255, 66, 66);
+  cursor: pointer;
 }
 
 .feedback-controller-item-container .feedback-controller-control-item-feedback {
@@ -73,10 +100,4 @@
   color: rgb(87, 87, 87);
 }
 
-.feedback-controller-control .feedback-controller-control-context-container .feedback-controller-item-container {
-  padding: 1.2rem 1rem;
-  display: flex;
-  flex-direction: row;
-  border: 3px solid rgba(121, 121, 121, 0.452);
-  align-items: center;
-}
+

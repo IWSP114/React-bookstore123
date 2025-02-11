@@ -21,7 +21,7 @@ function FeedbackControl() {
       const fetchData = async () => {
         try {
             //console.log(userID);
-            const response = await axios.get(`http://localhost:5000/api/get-feedback`); // Replace with your API endpoint
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}api/get-feedback`);
             setData(response.data.data); // Update state with fetched data
             //console.log(response.data.data);
         } catch (error) {
@@ -36,6 +36,18 @@ function FeedbackControl() {
     }
 
   }, [identity, loadingAuth, navigate, userID]); 
+
+  async function handleOnDeleteFeedback(feedbackID) {
+    try {
+      const response = await axios.delete(`${import.meta.env.VITE_API_URL}api/delete-feedback/${feedbackID}`); 
+      if(response.status === 200 && response.data.message === 'Success!') {
+        console.log('Success!');
+        setData(d => d.filter((dataItem) => dataItem.feedbackID !== feedbackID))
+      } 
+    } catch (error) {
+      setError(error.message); 
+    }
+  }
   
   if (loadingAuth) return <div>Loading...</div>; // Display loading state
   if (loading) return <div>Loading...</div>; // Display loading state
@@ -63,7 +75,7 @@ function FeedbackControl() {
                 <div className="feedback-controller-item-container" key={feedbackItem.feedbackID}>
                     <span className="feedback-controller-control-item-userID">{feedbackItem.userID}</span>
                     <span className="feedback-controller-control-item-feedback"><Link to={`/staff/feedbacks-control/${feedbackItem.feedbackID}`}>{feedbackItem.feedback}</Link></span>
-                    <span className="feedback-controller-control-item-action">Action</span>
+                    <button className="feedback-controller-control-item-action" onClick={() => handleOnDeleteFeedback(feedbackItem.feedbackID)}>Delete</button>
                 </div>
                 )}
             </div>

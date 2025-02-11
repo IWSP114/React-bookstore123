@@ -34,7 +34,7 @@ function Login() {
 
         const userData = { table: selectedOption, username: username, password: password };
         try {
-            const response = await axios.post('http://localhost:5000/login', userData);
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}login`, userData);
 
             if(response.status === 200 && response.data.message === 'Success!') {
                 if(selectedOption === 'users') {

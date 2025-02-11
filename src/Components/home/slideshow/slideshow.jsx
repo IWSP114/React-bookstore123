@@ -13,7 +13,7 @@ const Slideshow = () => {
   useEffect(() => {
     const fetchData = async () => {
         try {
-            const response = await axios.get(`http://localhost:5000/getProduct`); // Replace with your API endpoint
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}getProduct`); 
             setData((response.data.Products).slice(0, 5)); // Update state with fetched data
 
         } catch (error) {

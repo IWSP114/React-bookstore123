@@ -38,7 +38,7 @@ function Register() {
         event.preventDefault();
         const userData = { email: email, username: username, password: password };
         try {
-            const response = await axios.post('http://localhost:5000/register', userData);
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}register`, userData);
 
             if(response.status === 200 && response.data.message === 'Register successful!') {
                 navigate('/login'); // Navigate after successful login

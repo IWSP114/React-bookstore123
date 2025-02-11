@@ -48,7 +48,7 @@ const UploadForm = () => {
         formData.append('productStock', productStock);
 
         try {
-            const response = await axios.post('http://localhost:5000/create-product', formData, {
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}create-product`, formData, {
               headers: {
                   'Content-Type': 'multipart/form-data',
               },

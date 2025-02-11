@@ -13,7 +13,7 @@ function RandomBook() {
   useEffect(() => {
     const fetchData = async () => {
         try {
-            const response = await axios.get(`http://localhost:5000/getProduct`); // Replace with your API endpoint
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}getProduct`); 
             setData(response.data.Products); // Update state with fetched data
             console.log(response.data.Products);
 

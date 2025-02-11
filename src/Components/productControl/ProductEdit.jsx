@@ -31,7 +31,7 @@ function ProductEdit() {
         } else {
           const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/getProduct/${ProductID}`); // Replace with your API endpoint
+                const response = await axios.get(`${import.meta.env.VITE_API_URL}getProduct/${ProductID}`);
                 console.log(response.data.Products[0]);
                 setProductID(response.data.Products[0].productID)
                 setProductName(response.data.Products[0].name);
@@ -77,7 +77,7 @@ function ProductEdit() {
       };
 
       try {
-          const response = await axios.patch(`http://localhost:5000/api/product-edit`, Data);
+          const response = await axios.patch(`${import.meta.env.VITE_API_URL}api/product-edit`, Data);
 
           if(response.status === 200 && response.data.message === "Success!") {
               console.log(response.data.message);

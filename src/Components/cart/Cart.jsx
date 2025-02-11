@@ -41,7 +41,7 @@ function Cart() {
       };
 
       try {
-        const response = await axios.post('http://localhost:5000/create-order', data);
+        const response = await axios.post(`${import.meta.env.VITE_API_URL}create-order`, data);
 
         if(response.status === 200  && response.data.message === 'Your order placed successfully!') {
           console.log('Successful!')

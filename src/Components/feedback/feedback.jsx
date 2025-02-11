@@ -16,7 +16,7 @@ function Feedback() {
 
         const Data = { userID: userID, feedback: feedback };
         try {
-            const response = await axios.post('http://localhost:5000/api/create-feedback', Data);
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}api/create-feedback`, Data);
 
             if(response.status === 200 && response.data.message === 'Success!') {
                 //Good

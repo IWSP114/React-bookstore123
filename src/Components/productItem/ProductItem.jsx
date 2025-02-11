@@ -21,7 +21,7 @@ function ProductItem() {
       useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/getProduct/${ProductID}`); // Replace with your API endpoint
+                const response = await axios.get(`${import.meta.env.VITE_API_URL}getProduct/${ProductID}`); 
                 setData(response.data.Products[0]); // Update state with fetched data
                 setImageURL(response.data.Products[0].imageUrl);
                 console.log(response.data.Products[0]);
