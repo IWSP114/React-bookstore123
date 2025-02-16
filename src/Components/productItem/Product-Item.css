@@ -15,14 +15,13 @@ dialog {
   display: flex;
   flex-direction: row;
   width: 75vw;
-  height: 75vh;
 
   overflow: auto;
 }
 
 .product-item-body-container .product-item-container .product-item-picture-container {
   width: 50%;
-  height: 60%;
+  height: 25rem;
   display: flex;
   justify-content: center;
   align-items: center;

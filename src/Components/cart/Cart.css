@@ -1,7 +1,6 @@
 .body-container {
   display: flex;
   flex-direction: row;
-  height: 100vh;
 }
 
 /* Shopping Cart Items */
@@ -109,6 +108,7 @@
 .body-container  .payment-container {
   margin: 10px;
   width: 35vw;
+  height: 75vh;
 }
 
 .payment-container .payment-title-container {

@@ -68,7 +68,7 @@ function OrderPage() {
                 <div className="order-item-container" key={OrderItem.ordersID}>
                     <span className="order-lists-item-order"><Link to={`/orders/${OrderItem.ordersID}`}>{OrderItem.ordersID}</Link></span>
                     <span className="order-lists-item-date">{OrderItem.ordersDate}</span>
-                    <span className="order-lists-item-status">Comfirmed</span>
+                    <span className="order-lists-item-status">{OrderItem.orderStatus}</span>
                     <span className="order-lists-item-total"><b>USD${OrderItem.subtotalPrice}</b> for {OrderItem.totalAmounts} item</span>
                     <span className="order-lists-item-actions">ACTIONS</span>
                 </div>

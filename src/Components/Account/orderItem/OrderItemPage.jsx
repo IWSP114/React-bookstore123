@@ -22,7 +22,7 @@ function OrderItemPage() {
         try {
             const response = await axios.get(`${import.meta.env.VITE_API_URL}getSingleOrder/${OrderID}`); 
             setData(response.data); // Update state with fetched data\
-            console.log(data[0]);
+            //console.log(data[0]);
         } catch (error) {
             setError(error.message); 
         } finally {
@@ -49,7 +49,7 @@ function OrderItemPage() {
         <AccountOpinion />
 
         <div className="order-item-context">
-            <span>Order {data.data[0].ordersID} was placed on {data.data[0].ordersDate} and is currently Comfirmed.</span>
+            <span>Order {data.data[0].ordersID} was placed on {data.data[0].ordersDate} and is currently {data.data[0].orderStatus}.</span>
             <span className="order-title">Order Details {data.data[0].ordersID}</span>
 
             <div className="order-item-details-container">
