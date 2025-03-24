@@ -16,6 +16,8 @@ const OrderPage = lazy(()=> import ('./Components/Account/order/OrderPage.jsx'))
 const OrderItemPage = lazy(() => import ('./Components/Account/orderItem/OrderItemPage.jsx'));
 const ModifyProfilePage = lazy(() => import ('./Components/Account/modify-profile/ModifyProfilePage.jsx'))
 const LostPssword = lazy(() => import ('./Components/auth/LostPassword.jsx'));
+const PasswordReset = lazy(() => import ('./Components/auth/PasswordReset.jsx'));
+
 const CreateProduct = lazy (() => import ('./Components/productControl/createProducts.jsx'));
 const WishList = lazy (() => import ('./Components/wishList/wishList.jsx'));
 const ProductController = lazy (() => import ('./Components/productControl/productController.jsx'))
@@ -47,6 +49,8 @@ function App() {
                         <Route path="/login" element={<Suspense fallback={<div>Loading...</div>}><Login /></Suspense>} />
                         <Route path="/logout" element={<Suspense fallback={<div>Loading...</div>}><Logout /></Suspense>} />
                         <Route path="/lost-password" element={<Suspense fallback={<div>Loading...</div>}><LostPssword /></Suspense>} />
+                        <Route path="/password-reset/:encryptedEmail" element={<Suspense fallback={<div>Loading...</div>}><PasswordReset /></Suspense>} />
+                        
                         <Route path="/cart" element={<Cart />} />
                         <Route path="/product" element={<Product />} />
                         <Route path="/product/:ProductID" element={<Suspense fallback={<div>Loading...</div>}><ProductItemPage /></Suspense>} />

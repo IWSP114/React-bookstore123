@@ -1,40 +1,45 @@
 
-import { useNavigate } from 'react-router-dom';
 import { useState, useRef, useEffect } from 'react'
-import closeEyeIcon from "../../assets/close-eye-icon.png"
-import openEyeIcon from "../../assets/open-eye-icon.png"
+import axios from 'axios';
 import './LostPassword.css'
 
 function LostPssword() {
-    const navigate = useNavigate();
 
     const [email, setEmail] = useState("");
-    const [showPassword, setShowPassword] = useState(false);
-    const [password, setPassword] = useState("");
+    const [error, setError] = useState(null); // State for error handling
+    const [message, setMessage] = useState("");
     const form = useRef();
   
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
+        const data = { email: email };
+        try {
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}lost-password`, data); 
+            if(response.status === 200) {
+              setMessage("If your email is correct, you will receive a email soon.")
+              setEmail("");
+            }
+        } catch (error) {
+            setError(error.message); // Set error message in state
+        }
+        
 
-        navigate('/');
+        
 
     };
 
-    function handleShowPassword() {
-        setShowPassword(showPassword ? false : true);
-    }
-
     useEffect(() => {
             document.addEventListener('keydown', (event) => {
-                if (event.key === 'Enter' && email !== "" && password !== "") {
+                if (event.key === 'Enter' && email !== "") {
                     handleSubmit(event);
                 }
             });
     
             return () => document.removeEventListener('keydown', handleSubmit);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        }, [password, email])
+        }, [email])
 
+    if (error) return <div>Error: {error}</div>; // Display error message
     return (
         <>
             <div className="lost-password-container">
@@ -46,19 +51,10 @@ function LostPssword() {
                             <input type="email" onChange={(e) => setEmail(e.target.value)} id="email" name="email" required/>
                         </div>
                     </div>
-
-                    <div className="form-group">
-                                            <label htmlFor="password">Please input your New Password:</label>
-                                            <div className="password-input">
-                                                <input type={showPassword ? 'text' : 'password'} onChange={(e) => setPassword(e.target.value)} id="password" name="password" value={password} required/>
-                                                <button type="button" onClick={() => handleShowPassword()} className="password-showing-button">
-                                                <img src={showPassword ? openEyeIcon : closeEyeIcon} className="password-showing-icon"/>
-                                            </button>
-                                            </div> 
-                    </div>
                     
                     <div className="submit-group">
                         <input type="submit" value="Submit"/>
+                        <p>{message}</p>
                     </div>
                 </form>
             </div>
