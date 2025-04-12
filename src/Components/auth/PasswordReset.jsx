@@ -28,7 +28,6 @@ function PasswordReset() {
         const data = { encryptedEmail: encryptedEmail, newPassword: password };
 
         try {
-            setMessage(encryptedEmail);
             const response = await axios.patch(`${import.meta.env.VITE_API_URL}password-reset`, data); 
             if(response.status === 200) {
               setMessage("Password reset successful.")
