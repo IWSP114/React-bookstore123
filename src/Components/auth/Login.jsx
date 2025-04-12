@@ -1,6 +1,6 @@
 import { encryptData } from '../../utility/crypto.js'
 import { useCookies } from 'react-cookie';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react'
 import closeEyeIcon from "../../assets/close-eye-icon.png"
 import openEyeIcon from "../../assets/open-eye-icon.png"
@@ -104,6 +104,7 @@ function Login() {
                             <button type="button" onClick={() => handleShowPassword()} className="password-showing-button">
                             <img src={showPassword ? openEyeIcon : closeEyeIcon} className="password-showing-icon"/>
                         </button>
+                        <p className="forgot-password"><Link to="/lost-password">Forgot password?</Link></p>
                         </div> 
                         <span className="error-message">{errorMessage}</span>
                     </div> 

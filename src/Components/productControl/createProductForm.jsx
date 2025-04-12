@@ -119,7 +119,7 @@ const UploadForm = () => {
               <div className="form-group">
                 <input 
                     type="file" 
-                    accept="image/*" 
+                    accept="image/jpg" 
                     onChange={handleFileChange} 
                 />
                 <button type="submit" className="image-button" disabled={!selectedImage}>
