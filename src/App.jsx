@@ -26,6 +26,7 @@ const OrderControl = lazy (() => import ('./Components/orderControl/OrderControl
 import Feedback from './Components/feedback/feedback.jsx';
 const FeedbackControl = lazy(() => import ('./Components/feedback/feedback-staff/FeedbackControl.jsx'));
 const FeedbackDetail = lazy(() => import ('./Components/feedback/feedback-staff/FeedbackDetail.jsx'));
+const ChatFrom = lazy (() => import ('./Components/Account/AI/ChatForm.jsx'))
 import { CartObject } from './utility/CartObject.jsx';
 import { ProductObject } from './utility/ProductsObject.jsx';
 import Header from './header/header.jsx';
@@ -57,6 +58,8 @@ function App() {
                         <Route path="/orders" element={<Suspense fallback={<div>Loading...</div>}><OrderPage /></Suspense>} />
                         <Route path="/orders/:OrderID" element={<Suspense fallback={<div>Loading...</div>}><OrderItemPage /></Suspense>} />
                         <Route path="/account/edit-account" element={<Suspense fallback={<div>Loading...</div>}><ModifyProfilePage /></Suspense>} />
+                        <Route path="/account/AI-help" element={<Suspense fallback={<div>Loading...</div>}><ChatFrom /></Suspense>} />
+
                         <Route path="/staff/create-products" element={<Suspense fallback={<div>Loading...</div>}><CreateProduct /></Suspense>} />
                         <Route path="/staff/products-controll" element={<Suspense fallback={<div>Loading...</div>}><ProductController /></Suspense>} />
                         <Route path="/staff/products-edit/:ProductID" element={<Suspense fallback={<div>Loading...</div>}><ProductEdit /></Suspense>} />

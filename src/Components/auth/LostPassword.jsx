@@ -22,10 +22,6 @@ function LostPssword() {
         } catch (error) {
             setError(error.message); // Set error message in state
         }
-        
-
-        
-
     };
 
     useEffect(() => {
