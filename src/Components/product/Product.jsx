@@ -2,6 +2,7 @@
 import './Product.css';
 import { useState, useEffect, memo } from "react"
 import { Link } from 'react-router-dom';
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 //import ImageLoader from '../../utility/ImageLoader/ImageLoader';
 import axios from 'axios';
 
@@ -10,6 +11,7 @@ function Product() {
     const [loading, setLoading] = useState(true); // State for loading status
     const [error, setError] = useState(null); // State for error handling
     const [query, setQuery] = useState('');
+    const [isListening, setIsListening] = useState(false);
     const cache = {};
 
     useEffect(() => {
@@ -26,7 +28,6 @@ function Product() {
             try {
                 const response = await axios.get(`${import.meta.env.VITE_API_URL}getProduct`); 
                 setData(response.data.Products); // Update state with fetched data
-                console.log(response.data.Products);
                 cache[cacheKey] = response.data.Products;
     
             } catch (error) {
@@ -39,7 +40,47 @@ function Product() {
         fetchData(); 
       // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []); 
+  
+    const commands = [
+        {
+            command: 'Do you have *',
+            callback: (item) => setQuery(`${item}`)
+        },
+        {
+            command: 'I want to find *',
+            callback: (item) => setQuery(`${item}`)
+        },
+        {
+            command: 'Can you find me a *',
+            callback: (item) => setQuery(`${item}`)
+        },
+        {
+            command: 'reset',
+            callback: ({ resetTranscript }) => resetTranscript()
+        }
+    ];
 
+    function handleListening() {
+        if (!isListening) {
+            SpeechRecognition.startListening({ continuous: true });
+            setIsListening(true);
+        } else {
+            SpeechRecognition.stopListening();
+            setIsListening(false);
+        }
+    }
+
+    const { browserSupportsSpeechRecognition } = useSpeechRecognition({
+        commands,
+        onResult: (result) => {
+          // This fires on every recognition result
+          setQuery(result);
+        }
+      });
+
+    if (!browserSupportsSpeechRecognition) {
+        setQuery('Your browser does not support speech recognition');
+    }
     if (loading) return <div>Loading...</div>; // Display loading state
     if (error) return <div>Error: {error}</div>; // Display error message
 
@@ -65,11 +106,16 @@ function Product() {
                     </div>
                     <input
                         type="text"
-                        placeholder="Search Something..."
+                        placeholder="Search Something... / Supporting with voice input"
                         className="search-container"
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
                     />
+                    <div className="voice-input-container">
+                        <button onClick={handleListening}>{!isListening ? 'Start' : 'Stop'}</button>
+                        <button onClick={() => setQuery('')}>Reset</button>
+                    </div>
+
                 </div>
                 <div className="product-display-container">
                     <div className="product-type-title-container">Products</div>
